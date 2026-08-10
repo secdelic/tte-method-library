@@ -4,7 +4,7 @@ This repository is a statistical execution library for target trial emulation an
 
 The library executes researcher-specified target trial emulation and causal-inference analyses. Scientific study design, causal identification, database extraction and manuscript interpretation remain the responsibility of the investigators.
 
-Version: `1.0.0-rc1`
+Version: `1.0.0`
 Library status: `COMPLETE_METHOD_LIBRARY_WITH_MIXED_MODULE_READINESS`
 
 ## Scope
@@ -139,7 +139,7 @@ The repository records seeds, configuration files, input hashes, package version
 
 ## Citation
 
-Use `CITATION.cff` for the RC1 metadata. The private RC1 repository is `https://github.com/secdelic/tte-method-library`. After an approved fixed GitHub Release is archived by Zenodo, cite the version-specific Zenodo DOI. No DOI has been assigned yet.
+Use `CITATION.cff` for the stable-release metadata. The source repository is `https://github.com/secdelic/tte-method-library`. Until Zenodo archives the immutable `v1.0.0` GitHub Release, cite that fixed tag rather than the moving `main` branch. After archival, prefer the version-specific Zenodo DOI. No DOI has been assigned yet.
 
 ## License
 

@@ -13,11 +13,11 @@ patient_data,PASS,reports/final_rc1_privacy_scan.md,Only fixed-seed synthetic ex
 private_governance_absent,PASS,tests/test_private_governance_gate.R,Both private YAML filenames are absent
 identifier_scan,PASS,reports/public_identifier_scan.md,Nonessential identifier hits are zero
 license,PASS,LICENSE,MIT was selected by the researcher
-version_alignment,PASS,VERSION,Public metadata use 1.0.0-rc1
-citation_metadata,RC1_PASS_FINAL_RELEASE_FIELDS_PENDING,CITATION.cff,Repository URL is recorded; release date and DOI require an approved release
+version_alignment,PASS,VERSION,Public metadata use 1.0.0
+citation_metadata,PASS_DOI_PENDING,CITATION.cff,Repository URL stable version and release date are recorded; DOI awaits Zenodo archival
 local_ci,PASS,reports/pre_github_ci_equivalence.md,All local workflow-equivalent commands passed
 README,PASS,README.md,Scientific scope and readiness boundaries are explicit
 known_limitations,PASS,docs/known_limitations.md,Mixed readiness and production restrictions are documented
 git_root_commit,PASS,reports/rc1_root_commit_record.md,Fresh sanitized root commit is recorded
-GitHub_Actions,PASS,reports/github_actions_rc1_validation.md,Private remote workflow passed on the recorded source SHA
+GitHub_Actions,STABLE_RUN_PENDING,.github/workflows/ci.yml,Stable metadata commit must pass the complete public workflow
 Zenodo_DOI,PENDING_REMOTE_RELEASE,.zenodo.json,Created only after an approved GitHub Release

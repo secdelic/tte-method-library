@@ -6,7 +6,7 @@ authors:
   - given-names: "xuankun"
     family-names: "zheng"
     orcid: "https://orcid.org/0009-0006-7036-7811"
-version: "1.0.0-rc1"
+version: "1.0.0"
 date-released: "2026-08-11"
 repository-code: "https://github.com/secdelic/tte-method-library"
 license: MIT

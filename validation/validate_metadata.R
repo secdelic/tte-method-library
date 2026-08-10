@@ -7,7 +7,7 @@ if (length(missing)) stop("CITATION.cff missing: ", paste(missing, collapse = ",
 stopifnot(
   identical(as.character(cff$`cff-version`), "1.2.0"),
   identical(cff$type, "software"),
-  identical(cff$version, "1.0.0-rc1"),
+  identical(cff$version, "1.0.0"),
   identical(as.character(cff$`date-released`), "2026-08-11"),
   identical(cff$`repository-code`, "https://github.com/secdelic/tte-method-library"),
   identical(cff$license, "MIT"),
@@ -20,13 +20,13 @@ stopifnot(
 )
 if (!requireNamespace("jsonlite", quietly = TRUE)) stop("Package 'jsonlite' is required")
 zenodo <- jsonlite::fromJSON(file.path(root, ".zenodo.json"))
-stopifnot(zenodo$version == "1.0.0-rc1", zenodo$license == "MIT",
+stopifnot(zenodo$version == "1.0.0", zenodo$license == "MIT",
           zenodo$publication_date == "2026-08-11",
           zenodo$upload_type == "software",
           length(zenodo$related_identifiers$identifier) == 1L,
           zenodo$related_identifiers$identifier[[1]] == "https://github.com/secdelic/tte-method-library")
 description <- read.dcf(file.path(root, "DESCRIPTION"))
-stopifnot(description[1, "Version"] == "1.0.0-rc1")
-stopifnot(trimws(readLines(file.path(root, "VERSION"), n = 1L)) == "1.0.0-rc1")
+stopifnot(description[1, "Version"] == "1.0.0")
+stopifnot(trimws(readLines(file.path(root, "VERSION"), n = 1L)) == "1.0.0")
 stopifnot(grepl("MIT License", readLines(file.path(root, "LICENSE"), n = 1L), fixed = TRUE))
-message("PUBLIC_METADATA_VALIDATION=PASS; repository URL and RC1 release date recorded; DOI pending")
+message("PUBLIC_METADATA_VALIDATION=PASS; stable version, repository URL and release date recorded; DOI pending")

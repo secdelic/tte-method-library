@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+
+- Promoted the fully validated `v1.0.0-rc1` implementation to the stable release without statistical-code changes.
+- Preserved the two registry-controlled production profiles and all mixed-readiness boundaries.
+- Finalized stable citation, GitHub Release and Zenodo archival metadata.
+
 ## 1.0.0-rc1
 
 - Introduced the project-owned public runtime architecture.

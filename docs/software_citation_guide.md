@@ -1,5 +1,5 @@
 # Software citation guide
 
-During development, cite a fixed commit from `https://github.com/secdelic/tte-method-library` or an approved RC tag. For a manuscript, prefer the version-specific Zenodo DOI created from the corresponding GitHub Release.
+For development or pre-archive use, cite the immutable `v1.0.0` tag from `https://github.com/secdelic/tte-method-library`. Do not cite the moving `main` branch as the stable software version.
 
-The GitHub repository URL is now recorded; the Zenodo DOI remains pending. Do not substitute a moving branch URL for the final archived version citation.
+For a manuscript, prefer the version-specific Zenodo DOI created from the corresponding `v1.0.0` GitHub Release. The repository URL and stable version are recorded; the DOI remains pending until Zenodo completes the archive. Do not invent or preallocate a DOI.
