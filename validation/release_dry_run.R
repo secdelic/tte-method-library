@@ -8,9 +8,10 @@ required <- c(
 )
 missing <- required[!file.exists(file.path(root, required))]
 if (length(missing)) stop("Release dry run missing files: ", paste(missing, collapse = ", "))
-files <- list.files(root, recursive = TRUE, all.files = TRUE,
-                    full.names = FALSE, include.dirs = FALSE)
-files <- files[!grepl("(^|/)\\.git(/|$)|(^|/)output(/|$)", files)]
+files <- system2("git", "ls-files", stdout = TRUE)
+if (!length(files)) stop("No Git-tracked files were found for release validation")
+files <- gsub("\\\\", "/", files)
+files <- files[file.exists(file.path(root, files))]
 stopifnot(
   !any(basename(files) %in% c(
     "private_publication_rights_attestation.yml", "release_human_metadata.yml"
