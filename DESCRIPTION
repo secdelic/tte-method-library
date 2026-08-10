@@ -1,0 +1,19 @@
+Package: tteMethodLibrary
+Type: Project
+Title: Target Trial Emulation Statistical Analysis Method Library
+Version: 1.0.0-rc1
+Authors@R: person("xuankun", "zheng", role = c("aut", "cre"))
+Description: A statistical execution library for researcher-specified target
+    trial emulation and related causal-inference analyses. The repository is a
+    governed software project and is not distributed as an R package.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    cobalt,
+    digest,
+    ggplot2,
+    mice,
+    WeightIt,
+    yaml
+Suggests:
+    renv

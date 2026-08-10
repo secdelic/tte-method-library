@@ -1,0 +1,2 @@
+"profile","analysis","estimand","effect","estimate","se","conf_low","conf_high","variance_method","n_analyzed","ps_formula","weight_formula","release_status"
+"MI_PS_CONTINUOUS_ATE","primary","ATE","mean_difference",0.543721830661335,0.0967450945277722,0.353545140772278,0.733898520550391,"weightit_m_estimation_plus_rubin",600,"treatment ~ x + z","A/e+(1-A)/(1-e)","AUDIT_ONLY"

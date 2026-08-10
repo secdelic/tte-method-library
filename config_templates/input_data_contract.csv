@@ -1,0 +1,2 @@
+dataset_id,relative_path,format,analysis_unit,required,primary_key,time_structure,contains_patient_level_rows,expected_columns,sha256,approved_by,notes
+analysis_data,input/private/analysis_data.csv,csv,<USER_DEFINED>,TRUE,<USER_DEFINED>,<baseline_wide|person_period|longitudinal_wide|longitudinal_long>,TRUE,<USER_DEFINED>,,<USER_DEFINED>,Do not place patient data in the canonical method library or Git

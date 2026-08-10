@@ -1,0 +1,5 @@
+"profile","analysis","estimand","effect","estimate","se","conf_low","conf_high","variance_method","release_status"
+"BASELINE_BINARY_RISK","primary","ATE","risk_treated",0.339595398970698,0.0298722956423932,0.281046775376075,0.398144022565321,"fixed_weight_influence_curve","AUDIT_ONLY"
+"BASELINE_BINARY_RISK","primary","ATE","risk_control",0.190261681749857,0.0249946247617342,0.141273117409764,0.239250246089949,"fixed_weight_influence_curve","AUDIT_ONLY"
+"BASELINE_BINARY_RISK","primary","ATE","RD",0.149333717220841,0.0389497793822563,0.0729935524258384,0.225673882015845,"fixed_weight_influence_curve","AUDIT_ONLY"
+"BASELINE_BINARY_RISK","primary","ATE","RR",1.78488593103668,0.282191172054355,1.30928793375323,2.43324459401392,"fixed_weight_influence_curve","AUDIT_ONLY"

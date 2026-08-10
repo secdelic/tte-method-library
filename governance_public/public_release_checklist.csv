@@ -1,0 +1,23 @@
+item,status,evidence,notes
+public_code_scope,PASS,README.md,Only project implementation and approved public assets are included
+rights_confirmed,PASS,PRIVATE_LOCAL_GATE_CONFIRMED,Detailed private attestation is not distributed
+production_estimator_present,PASS,R/estimators,Two registry-controlled production profiles are present
+numerical_equivalence,PASS,validation/numerical_equivalence_summary.md,35 of 35 canonical-to-public comparisons passed
+independent_validation,PASS,validation/independent_validation_summary.md,Weighted effect and Rubin/Barnard-Rubin checks passed
+quick_start,PASS,examples/quick_start/run_quick_start.R,Runs the baseline production estimator on synthetic data
+figure_system,PASS,tests/test_publication_figures.R,14 figure types and four export formats passed
+table_system,PASS,tests/test_publication_tables.R,Table 1 main effects and sensitivity exports passed
+privacy,PASS,reports/final_rc1_privacy_scan.md,No private path or real patient data confirmed
+secret,PASS,reports/final_rc1_secret_scan.md,No secret or credential confirmed
+patient_data,PASS,reports/final_rc1_privacy_scan.md,Only fixed-seed synthetic examples are included
+private_governance_absent,PASS,tests/test_private_governance_gate.R,Both private YAML filenames are absent
+identifier_scan,PASS,reports/public_identifier_scan.md,Nonessential identifier hits are zero
+license,PASS,LICENSE,MIT was selected by the researcher
+version_alignment,PASS,VERSION,Public metadata use 1.0.0-rc1
+citation_metadata,REMOTE_FIELDS_PENDING,CITATION.cff,Repository URL release date and DOI require remote publication
+local_ci,PASS,reports/pre_github_ci_equivalence.md,All local workflow-equivalent commands passed
+README,PASS,README.md,Scientific scope and readiness boundaries are explicit
+known_limitations,PASS,docs/known_limitations.md,Mixed readiness and production restrictions are documented
+git_root_commit,READY,PUBLIC_RELEASE_STATUS.md,Researcher-confirmed identity is configured locally and all precommit gates pass
+GitHub_Actions,PENDING_REMOTE,.github/workflows/ci.yml,Requires authorized remote repository creation
+Zenodo_DOI,PENDING_REMOTE_RELEASE,.zenodo.json,Created only after an approved GitHub Release

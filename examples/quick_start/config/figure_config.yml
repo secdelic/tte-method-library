@@ -1,0 +1,34 @@
+schema_version: "1.0"
+dimensions:
+  single_column_width_mm: 85
+  double_column_width_mm: 178
+  default_height_mm: 110
+typography:
+  font_family: "sans"
+  base_font_pt: 8
+  minimum_font_pt: 7
+geometry:
+  line_width_pt: 0.7
+  point_size_pt: 2.5
+export:
+  vector_formats: [pdf, svg]
+  raster_formats: [tiff, png]
+  raster_dpi: 600
+  background: "white"
+palette:
+  name: "journal_safe_colorblind"
+  colors: ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#000000"]
+  grayscale_compatible: true
+  use_shape_and_linetype_redundancy: true
+style:
+  three_dimensional_effects: false
+  decorative_gradients: false
+  ai_style_decoration: false
+numbering:
+  prefix: "Figure"
+  start: 1
+quality_control:
+  require_clipping_check: true
+  require_overlap_check: true
+  require_grayscale_check: true
+  require_human_visual_approval: true

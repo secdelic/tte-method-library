@@ -1,0 +1,3 @@
+profile,production_allowed,estimand,outcome_type,missing_data,variance_method,readiness,notes
+BASELINE_BINARY_RISK,TRUE,ATE,binary,none,fixed_weight_influence_curve,NUMERICALLY_VALIDATED,Fixed-horizon weighted risks RD and RR
+MI_PS_CONTINUOUS_ATE,TRUE,ATE,continuous,mice,weightit_m_estimation_plus_rubin,NUMERICALLY_VALIDATED,PMM within-imputation weighting and Rubin pooling

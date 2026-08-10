@@ -1,0 +1,2 @@
+dataset_id,relative_path,format,analysis_unit,required,primary_key,time_structure,contains_patient_level_rows,expected_columns,sha256,approved_by,notes
+analysis_data,input/private/analysis_data.csv,csv,one_row_per_analysis_unit,TRUE,analysis_id,baseline_wide,TRUE,subject_id|analysis_id|eligibility_time|time_zero|treatment_assignment_time|followup_start|followup_end|treatment|outcome|x|z,BB5A22383EC9A7F1B5157A02AAE5714E8F58C33B85A587E589D771C23A205F5D,synthetic_example,Fully synthetic analysis-unit rows generated with a fixed seed

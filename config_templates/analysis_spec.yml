@@ -1,0 +1,75 @@
+schema_version: "1.0"
+profile: "<BASELINE_BINARY_RISK|MI_PS_CONTINUOUS_ATE>"
+analysis_id: "<USER_DEFINED>"
+scientific_fields_frozen: false
+design:
+  type: "<baseline_tte|longitudinal_tte|ccw|lmtp>"
+  analysis_population: "<USER_DEFINED>"
+population:
+  id: "<USER_DEFINED>"
+  cluster_id: null
+  eligibility_variables: []
+time_zero:
+  variable: "<USER_DEFINED>"
+  definition: "<USER_DEFINED>"
+treatment:
+  variable: "<USER_DEFINED>"
+  definition: "<USER_DEFINED>"
+strategies:
+  - id: "<USER_DEFINED>"
+    definition: "<USER_DEFINED>"
+grace_period:
+  enabled: false
+  start: null
+  end: null
+  unit: "<USER_DEFINED>"
+follow_up:
+  start: "<USER_DEFINED>"
+  end: "<USER_DEFINED>"
+  administrative_end: null
+  unit: "<USER_DEFINED>"
+outcome:
+  variable: "<USER_DEFINED>"
+  type: "<binary|continuous|time_to_event|competing_risk>"
+  definition: "<USER_DEFINED>"
+estimand:
+  name: "<USER_DEFINED>"
+  effect_measure: "<USER_DEFINED>"
+baseline_confounders: []
+time_varying_confounders: []
+missing_data:
+  strategy: "<complete_case|mice|none>"
+  m: null
+  maxit: null
+  seed: null
+weighting:
+  method: "<none|iptw|stabilized_iptw|overlap|matching>"
+  estimand: "<USER_DEFINED>"
+  propensity_model: "<USER_DEFINED>"
+  truncation_quantiles: []
+variance:
+  method: "<robust|cluster_robust|bootstrap|influence_curve|rubin>"
+  cluster_id: null
+  confidence_level: 0.95
+sensitivity:
+  prespecified: true
+  analyses: []
+figures:
+  config_file: "config/figure_config.yml"
+  requested: []
+governance:
+  created_by: "<USER_DEFINED>"
+  approved_by: "<USER_DEFINED>"
+  approval_date: null
+  specification_hash: null
+  result_dependent_changes_allowed: false
+runtime_thresholds:
+  positivity_lower: 0.05
+  positivity_upper: 0.95
+  max_positivity_violation_rate: 0.10
+  max_abs_smd: 0.10
+  min_total_ess: 100
+  min_group_n: 30
+  run_truncation_sensitivity: false
+  truncation_lower: 0.01
+  truncation_upper: 0.99

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite the fixed software release. After Zenodo archival, prefer the version-specific DOI."
+title: "Target Trial Emulation Statistical Analysis Method Library"
+type: software
+authors:
+  - given-names: "xuankun"
+    family-names: "zheng"
+    orcid: "https://orcid.org/0009-0006-7036-7811"
+version: "1.0.0-rc1"
+license: MIT
+keywords:
+  - target trial emulation
+  - causal inference
+  - propensity-score weighting
+  - multiple imputation
+  - reproducible statistical analysis
+  - R
+abstract: "A statistical execution library for researcher-specified target trial emulation and related causal-inference analyses."

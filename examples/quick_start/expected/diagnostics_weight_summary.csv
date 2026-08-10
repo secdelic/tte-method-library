@@ -1,0 +1,2 @@
+"n_analyzed","n_control","n_treated","event_count","ps_formula","weight_formula","total_ess","control_ess","treated_ess","max_weight","positivity_violation_rate"
+600,320,280,153,"treatment ~ x + z","A/e+(1-A)/(1-e)",531.883281041949,288.139872336661,246.700397539771,7.20254105037842,0

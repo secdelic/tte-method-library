@@ -1,0 +1,151 @@
+schema_version: "1.0"
+scientific_fields_frozen: true
+analyses:
+  BASELINE_BINARY_RISK:
+    scientific_fields_frozen: true
+    design:
+      type: baseline_tte
+      analysis_population: synthetic_baseline_population
+    population:
+      id: subject_id
+      cluster_id: null
+      eligibility_variables: [eligibility_time]
+    time_zero:
+      variable: time_zero
+      definition: synthetic common eligibility and treatment-assignment time
+    treatment:
+      variable: treatment
+      definition: synthetic binary treatment assignment
+    strategies:
+      - id: treatment_1
+        definition: assigned treatment 1 at time zero
+      - id: treatment_0
+        definition: assigned treatment 0 at time zero
+    grace_period:
+      enabled: false
+      start: 0
+      end: 0
+      unit: not_applicable
+    follow_up:
+      start: followup_start
+      end: followup_end
+      administrative_end: synthetic fixed horizon
+      unit: days
+    outcome:
+      variable: outcome
+      type: binary
+      definition: synthetic binary event by the fixed horizon
+    estimand:
+      name: ATE
+      effect_measure: risk_difference_and_risk_ratio
+    baseline_confounders: [x, z]
+    time_varying_confounders: []
+    missing_data:
+      strategy: none
+      m: 0
+      maxit: 0
+      seed: 20260730
+    weighting:
+      method: iptw
+      estimand: ATE
+      propensity_model: "treatment ~ x + z"
+      truncation_quantiles: [0.01, 0.99]
+    variance:
+      method: fixed_weight_influence_curve
+      cluster_id: null
+      confidence_level: 0.95
+    sensitivity:
+      prespecified: true
+      analyses: [weight_truncation]
+    figures:
+      config_file: config/figure_config.yml
+      requested: [love_plot, forest_plot]
+    governance:
+      created_by: synthetic_example
+      approved_by: synthetic_example
+      approval_date: 2026-08-10
+      result_dependent_changes_allowed: false
+    runtime_thresholds:
+      positivity_lower: 0.05
+      positivity_upper: 0.95
+      max_positivity_violation_rate: 0.10
+      max_abs_smd: 0.10
+      min_total_ess: 100
+      min_group_n: 30
+      run_truncation_sensitivity: true
+      truncation_lower: 0.01
+      truncation_upper: 0.99
+  MI_PS_CONTINUOUS_ATE:
+    scientific_fields_frozen: true
+    design:
+      type: baseline_tte
+      analysis_population: synthetic_mi_population
+    population:
+      id: subject_id
+      cluster_id: null
+      eligibility_variables: [eligibility_time]
+    time_zero:
+      variable: time_zero
+      definition: synthetic common eligibility and treatment-assignment time
+    treatment:
+      variable: treatment
+      definition: synthetic binary treatment assignment
+    strategies:
+      - id: treatment_1
+        definition: assigned treatment 1 at time zero
+      - id: treatment_0
+        definition: assigned treatment 0 at time zero
+    grace_period:
+      enabled: false
+      start: 0
+      end: 0
+      unit: not_applicable
+    follow_up:
+      start: followup_start
+      end: followup_end
+      administrative_end: synthetic fixed horizon
+      unit: days
+    outcome:
+      variable: outcome
+      type: continuous
+      definition: synthetic continuous outcome at the fixed horizon
+    estimand:
+      name: ATE
+      effect_measure: mean_difference
+    baseline_confounders: [x, z]
+    time_varying_confounders: []
+    missing_data:
+      strategy: mice
+      m: 10
+      maxit: 10
+      seed: 20260731
+    weighting:
+      method: iptw
+      estimand: ATE
+      propensity_model: "treatment ~ x + z"
+      truncation_quantiles: []
+    variance:
+      method: weightit_m_estimation_plus_rubin
+      cluster_id: null
+      confidence_level: 0.95
+    sensitivity:
+      prespecified: true
+      analyses: [complete_case]
+    figures:
+      config_file: config/figure_config.yml
+      requested: [love_plot, forest_plot]
+    governance:
+      created_by: synthetic_example
+      approved_by: synthetic_example
+      approval_date: 2026-08-10
+      result_dependent_changes_allowed: false
+    runtime_thresholds:
+      positivity_lower: 0.05
+      positivity_upper: 0.95
+      max_positivity_violation_rate: 0.10
+      max_abs_smd: 0.10
+      min_total_ess: 100
+      min_group_n: 30
+      run_truncation_sensitivity: false
+      truncation_lower: 0.01
+      truncation_upper: 0.99

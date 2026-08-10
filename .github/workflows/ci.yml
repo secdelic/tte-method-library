@@ -1,0 +1,29 @@
+name: public-rc1-validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-renv@v2
+      - name: Parse R sources
+        run: Rscript -e 'files <- list.files(".", pattern="[.]R$", recursive=TRUE, full.names=TRUE); invisible(lapply(files, parse)); cat("R_PARSE=PASS\n")'
+      - name: Tests
+        run: Rscript tests/run_tests.R
+      - name: Production Quick Start
+        run: Rscript examples/quick_start/run_quick_start.R
+      - name: Numerical and independent validation
+        run: Rscript validation/run_public_numerical_regression.R
+      - name: Metadata and documentation
+        run: |
+          Rscript validation/validate_metadata.R
+          Rscript validation/validate_documentation_links.R
+      - name: Privacy, secrets, identifiers, and private governance
+        run: Rscript validation/scan_public_repository.R
+      - name: Release dry run
+        run: Rscript validation/release_dry_run.R
