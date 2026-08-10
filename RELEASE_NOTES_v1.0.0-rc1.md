@@ -1,5 +1,7 @@
 # Target Trial Emulation Method Library v1.0.0-rc1
 
+Release date: 2026-08-11
+
 This release candidate provides two registry-controlled production paths:
 
 - `BASELINE_BINARY_RISK`: propensity-score weighting, balance, ESS, weighted treatment-specific risks, RD, RR, fixed-weight influence-curve standard errors and confidence intervals.

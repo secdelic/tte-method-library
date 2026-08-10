@@ -1,6 +1,6 @@
 # Public release status
 
-`PUBLIC_RELEASE_STATUS = PRIVATE_GITHUB_RC1_VALIDATED_AWAITING_PUBLIC_RELEASE_APPROVAL`
+`PUBLIC_RELEASE_STATUS = PUBLIC_RC1_RELEASE_METADATA_FINALIZED_PRIVATE_CI_PENDING`
 
 All local and remote scientific, numerical, rights, license, privacy, identifier, Quick Start, figure, table and release-dry-run gates pass. A fresh public-history RC1 is hosted in the private GitHub repository:
 
@@ -8,4 +8,4 @@ All local and remote scientific, numerical, rights, license, privacy, identifier
 https://github.com/secdelic/tte-method-library
 ```
 
-Repository URL metadata is recorded in the public metadata files. The real GitHub Actions workflow completed successfully on the validated RC1 source tree. Human approval remains required before creating an RC1 tag, GitHub Release, changing visibility or initiating any Zenodo operation. Release date and DOI remain intentionally pending.
+Repository URL and the actual RC1 release date are recorded in the public metadata files. The metadata-only release commit must pass the complete private GitHub Actions workflow before visibility changes. Human approval has been granted for public RC1 validation, an immutable RC1 tag and a GitHub Pre-release. The DOI remains intentionally pending, and no Zenodo archival is authorized in this task.
