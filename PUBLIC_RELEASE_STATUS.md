@@ -1,6 +1,6 @@
 # Public release status
 
-`PUBLIC_RELEASE_STATUS = V1_0_0_STABLE_CANDIDATE_METADATA_PREPARED`
+`PUBLIC_RELEASE_STATUS = TTE_METHOD_LIBRARY_V1_0_0_PUBLICLY_RELEASED_AND_ARCHIVED`
 
 All RC1 scientific, numerical, rights, license, privacy, identifier, Quick Start, figure, table and release-dry-run gates passed on the public repository:
 
@@ -8,4 +8,4 @@ All RC1 scientific, numerical, rights, license, privacy, identifier, Quick Start
 https://github.com/secdelic/tte-method-library
 ```
 
-The stable candidate uses the validated RC1 statistical implementation without estimator, estimand, tolerance, expected-result, production-registry or maturity changes. Stable metadata must pass the complete public GitHub Actions workflow and an external smoke test before an immutable `v1.0.0` tag is created. Zenodo GitHub integration must be enabled before the formal GitHub Release. The DOI remains intentionally pending until Zenodo creates the archival record.
+The stable release uses the validated RC1 statistical implementation without estimator, estimand, tolerance, expected-result, production-registry or maturity changes. The exact stable commit passed the complete public GitHub Actions workflow and an external smoke test, was frozen as immutable tag `v1.0.0`, and was archived through Zenodo GitHub integration. The version-specific DOI is `10.5281/zenodo.21879884`; the concept DOI is `10.5281/zenodo.21879883`.

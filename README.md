@@ -139,7 +139,7 @@ The repository records seeds, configuration files, input hashes, package version
 
 ## Citation
 
-Use `CITATION.cff` for the stable-release metadata. The source repository is `https://github.com/secdelic/tte-method-library`. Until Zenodo archives the immutable `v1.0.0` GitHub Release, cite that fixed tag rather than the moving `main` branch. After archival, prefer the version-specific Zenodo DOI. No DOI has been assigned yet.
+Use `CITATION.cff` for the stable-release metadata. The source repository is `https://github.com/secdelic/tte-method-library`. The immutable `v1.0.0` source is archived by Zenodo at the version-specific DOI [`10.5281/zenodo.21879884`](https://doi.org/10.5281/zenodo.21879884). Cite that DOI rather than the moving `main` branch. The all-versions concept DOI is `10.5281/zenodo.21879883`.
 
 ## License
 

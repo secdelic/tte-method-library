@@ -35,4 +35,4 @@ Project-owned implementation is released under the MIT License. Dependencies ret
 
 ## Citation
 
-The immutable GitHub `v1.0.0` tag provides the fixed source reference. After Zenodo archives the formal GitHub Release, use the version-specific Zenodo DOI for formal software citation. No DOI is populated before the archive is created.
+The immutable GitHub `v1.0.0` tag provides the fixed source reference. Zenodo archived that release with version-specific DOI [`10.5281/zenodo.21879884`](https://doi.org/10.5281/zenodo.21879884). Use this DOI for formal citation of version `1.0.0`.

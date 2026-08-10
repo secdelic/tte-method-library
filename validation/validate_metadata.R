@@ -10,6 +10,7 @@ stopifnot(
   identical(cff$version, "1.0.0"),
   identical(as.character(cff$`date-released`), "2026-08-11"),
   identical(cff$`repository-code`, "https://github.com/secdelic/tte-method-library"),
+  identical(cff$doi, "10.5281/zenodo.21879884"),
   identical(cff$license, "MIT"),
   length(cff$authors) >= 1L
 )
@@ -29,4 +30,4 @@ description <- read.dcf(file.path(root, "DESCRIPTION"))
 stopifnot(description[1, "Version"] == "1.0.0")
 stopifnot(trimws(readLines(file.path(root, "VERSION"), n = 1L)) == "1.0.0")
 stopifnot(grepl("MIT License", readLines(file.path(root, "LICENSE"), n = 1L), fixed = TRUE))
-message("PUBLIC_METADATA_VALIDATION=PASS; stable version, repository URL and release date recorded; DOI pending")
+message("PUBLIC_METADATA_VALIDATION=PASS; stable version and version-specific Zenodo DOI recorded")

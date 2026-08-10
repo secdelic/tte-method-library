@@ -14,10 +14,10 @@ private_governance_absent,PASS,tests/test_private_governance_gate.R,Both private
 identifier_scan,PASS,reports/public_identifier_scan.md,Nonessential identifier hits are zero
 license,PASS,LICENSE,MIT was selected by the researcher
 version_alignment,PASS,VERSION,Public metadata use 1.0.0
-citation_metadata,PASS_DOI_PENDING,CITATION.cff,Repository URL stable version and release date are recorded; DOI awaits Zenodo archival
+citation_metadata,PASS,CITATION.cff,Version-specific Zenodo DOI and stable release metadata are recorded
 local_ci,PASS,reports/pre_github_ci_equivalence.md,All local workflow-equivalent commands passed
 README,PASS,README.md,Scientific scope and readiness boundaries are explicit
 known_limitations,PASS,docs/known_limitations.md,Mixed readiness and production restrictions are documented
 git_root_commit,PASS,reports/rc1_root_commit_record.md,Fresh sanitized root commit is recorded
-GitHub_Actions,STABLE_RUN_PENDING,.github/workflows/ci.yml,Stable metadata commit must pass the complete public workflow
-Zenodo_DOI,PENDING_REMOTE_RELEASE,.zenodo.json,Created only after an approved GitHub Release
+GitHub_Actions,PASS,reports/v1_0_0_stable_ci_validation.md,Complete public workflow passed on the stable candidate SHA
+Zenodo_DOI,PASS,https://doi.org/10.5281/zenodo.21879884,Version-specific DOI created from immutable v1.0.0 GitHub Release

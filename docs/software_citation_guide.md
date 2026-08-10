@@ -1,5 +1,5 @@
 # Software citation guide
 
-For development or pre-archive use, cite the immutable `v1.0.0` tag from `https://github.com/secdelic/tte-method-library`. Do not cite the moving `main` branch as the stable software version.
+For development use, cite the immutable `v1.0.0` tag from `https://github.com/secdelic/tte-method-library`. Do not cite the moving `main` branch as the stable software version.
 
-For a manuscript, prefer the version-specific Zenodo DOI created from the corresponding `v1.0.0` GitHub Release. The repository URL and stable version are recorded; the DOI remains pending until Zenodo completes the archive. Do not invent or preallocate a DOI.
+For a manuscript that used version `1.0.0`, cite the version-specific Zenodo DOI [`10.5281/zenodo.21879884`](https://doi.org/10.5281/zenodo.21879884). The concept DOI `10.5281/zenodo.21879883` identifies the evolving all-versions software record and must not be substituted when the paper requires the fixed `v1.0.0` source.
