@@ -1,5 +1,9 @@
 root <- normalizePath(".", winslash = "/", mustWork = TRUE)
-files <- list.files(root, pattern = "[.]md$", recursive = TRUE, full.names = TRUE)
+tracked <- system2("git", "ls-files", stdout = TRUE)
+if (!length(tracked)) stop("No Git-tracked files were found for documentation validation")
+tracked <- tracked[grepl("[.]md$", tracked, ignore.case = TRUE)]
+files <- file.path(root, tracked)
+files <- files[file.exists(files)]
 missing <- character()
 for (file in files) {
   lines <- readLines(file, warn = FALSE, encoding = "UTF-8")

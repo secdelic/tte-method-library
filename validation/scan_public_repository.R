@@ -1,8 +1,9 @@
 root <- normalizePath(".", winslash = "/", mustWork = TRUE)
-all_files <- list.files(root, recursive = TRUE, all.files = TRUE,
-                        full.names = TRUE, include.dirs = FALSE)
-relative <- substring(normalizePath(all_files, winslash = "/", mustWork = FALSE), nchar(root) + 2L)
-keep <- !grepl("(^|/)\\.git(/|$)|(^|/)output(/|$)", relative)
+relative <- system2("git", "ls-files", stdout = TRUE)
+if (!length(relative)) stop("No Git-tracked files were found for public-repository scanning")
+relative <- gsub("\\\\", "/", relative)
+all_files <- file.path(root, relative)
+keep <- file.exists(all_files) & !dir.exists(all_files)
 all_files <- all_files[keep]
 relative <- relative[keep]
 
