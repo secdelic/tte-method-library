@@ -458,6 +458,7 @@ export_publication_figure <- function(
       filename = path, plot = plot, width = width_mm, height = height_mm,
       units = "mm", bg = config$export$background, limitsize = FALSE
     )
+    if (format == "svg") args$device <- grDevices::svg
     if (format %in% raster_formats) args$dpi <- config$export$raster_dpi
     if (format %in% c("tif", "tiff")) args$compression <- "lzw"
     do.call(ggplot2::ggsave, args)
