@@ -14,10 +14,10 @@ private_governance_absent,PASS,tests/test_private_governance_gate.R,Both private
 identifier_scan,PASS,reports/public_identifier_scan.md,Nonessential identifier hits are zero
 license,PASS,LICENSE,MIT was selected by the researcher
 version_alignment,PASS,VERSION,Public metadata use 1.0.0-rc1
-citation_metadata,REMOTE_FIELDS_PENDING,CITATION.cff,Repository URL release date and DOI require remote publication
+citation_metadata,RC1_PASS_FINAL_RELEASE_FIELDS_PENDING,CITATION.cff,Repository URL is recorded; release date and DOI require an approved release
 local_ci,PASS,reports/pre_github_ci_equivalence.md,All local workflow-equivalent commands passed
 README,PASS,README.md,Scientific scope and readiness boundaries are explicit
 known_limitations,PASS,docs/known_limitations.md,Mixed readiness and production restrictions are documented
-git_root_commit,READY,PUBLIC_RELEASE_STATUS.md,Researcher-confirmed identity is configured locally and all precommit gates pass
-GitHub_Actions,PENDING_REMOTE,.github/workflows/ci.yml,Requires authorized remote repository creation
+git_root_commit,PASS,reports/rc1_root_commit_record.md,Fresh sanitized root commit is recorded
+GitHub_Actions,PASS,reports/github_actions_rc1_validation.md,Private remote workflow passed on the recorded source SHA
 Zenodo_DOI,PENDING_REMOTE_RELEASE,.zenodo.json,Created only after an approved GitHub Release

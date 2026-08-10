@@ -1,18 +1,18 @@
 item,status,evidence,notes
 root_commit,PASS,reports/rc1_root_commit_record.md,Fresh root commit created from the sanitized RC1 tree
 remote_repository_private,PASS,reports/github_initial_push_validation.md,Repository visibility is PRIVATE
-remote_main_matches_local,PASS,reports/github_initial_push_validation.md,Initial push SHA matched before metadata update
+remote_main_matches_local,PASS,reports/github_actions_rc1_validation.md,Local and remote main matched the CI-tested source SHA
 private_yaml_absent,PASS,reports/final_rc1_scan.csv,Neither prohibited private YAML is present
 patient_data_absent,PASS,reports/final_rc1_privacy_scan.md,Only fixed-seed synthetic examples are included
 secret_scan,PASS,reports/final_rc1_secret_scan.md,No confirmed secret or credential
 repository_metadata,PASS,CITATION.cff,Repository URL recorded
-citation_cff,PASS,CITATION.cff,Schema 1.2.0 validation passed locally; remote schema run pending
+citation_cff,PASS,reports/github_actions_rc1_validation.md,CFF schema 1.2.0 passed locally and in GitHub Actions
 license,PASS,LICENSE,MIT selected by the researcher
 production_quick_start,PASS,examples/quick_start/run_quick_start.R,Synthetic production profile passed locally
 numerical_equivalence,PASS,validation/numerical_equivalence_summary.md,35 of 35 comparisons passed
 independent_validation,PASS,validation/independent_validation_summary.md,11 independent formula checks passed
 figures,PASS,tests/test_publication_figures.R,14 figure types and four export formats
 tables,PASS,tests/test_publication_tables.R,Table 1 main effects and sensitivity exports
-github_actions,PENDING_REMOTE,.github/workflows/ci.yml,Must pass on final remote HEAD
+github_actions,PASS,reports/github_actions_rc1_validation.md,Real private-repository workflow completed successfully
 release_notes,PASS,RELEASE_NOTES_v1.0.0-rc1.md,RC1 notes prepared
 human_release_approval,PENDING,governance_public/github_rc1_readiness.csv,Required before tag release visibility change or Zenodo
