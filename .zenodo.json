@@ -18,5 +18,12 @@
   "license": "MIT",
   "version": "1.0.0-rc1",
   "upload_type": "software",
-  "related_identifiers": []
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/secdelic/tte-method-library",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
+    }
+  ]
 }

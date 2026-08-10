@@ -139,7 +139,7 @@ The repository records seeds, configuration files, input hashes, package version
 
 ## Citation
 
-Use `CITATION.cff` for the RC1 metadata. After a fixed GitHub Release is archived by Zenodo, cite the version-specific Zenodo DOI. The repository URL and DOI are intentionally pending until the remote publication stage.
+Use `CITATION.cff` for the RC1 metadata. The private RC1 repository is `https://github.com/secdelic/tte-method-library`. After an approved fixed GitHub Release is archived by Zenodo, cite the version-specific Zenodo DOI. No DOI has been assigned yet.
 
 ## License
 

@@ -23,6 +23,10 @@ jobs:
         run: |
           Rscript validation/validate_metadata.R
           Rscript validation/validate_documentation_links.R
+      - name: CITATION.cff schema
+        run: |
+          python -m pip install --disable-pip-version-check cffconvert==2.0.0
+          cffconvert --validate
       - name: Privacy, secrets, identifiers, and private governance
         run: Rscript validation/scan_public_repository.R
       - name: Release dry run
