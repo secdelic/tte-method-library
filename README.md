@@ -43,6 +43,16 @@ renv::restore()
 
 Environment restoration may require network access to package repositories. The statistical examples themselves do not download data or contact a database.
 
+## Chinese documentation
+
+Chinese-language user documentation for the fixed v1.0.0 release is available in the following files:
+
+- [正式使用说明书](docs/USER_GUIDE_ZH_CN.md)
+- [快速参考](docs/TTE_METHOD_LIBRARY_QUICK_REFERENCE_ZH_CN.md)
+- [故障排查表](docs/TROUBLESHOOTING_ZH_CN.md)
+- [配置字段字典](docs/CONFIG_REFERENCE_ZH_CN.md)
+- [中文文档导航](docs/zh_CN/README.md)
+
 ## Quick Start
 
 From the repository root:
