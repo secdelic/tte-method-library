@@ -124,6 +124,11 @@ The publication table layer supports unweighted and weighted Table 1 summaries w
 
 The figure system supports vector PDF/SVG and 600-DPI TIFF/PNG output, 85-mm and 178-mm widths, minimum 7-point fonts, colorblind-aware palettes and grayscale redundancy. Machine checks do not replace study-specific human visual approval.
 
+The feature branch includes an [SCI Figure Style v1.1 Candidate gallery](figure_gallery/README.md)
+and [v1.0.0 before/after comparison](figure_style_comparison/README.md).
+This visual candidate does not change the stable software version, statistical
+estimators, estimands, or module readiness. Investigator visual adoption is pending.
+
 ## Synthetic examples
 
 - `examples/quick_start/`: baseline binary-risk production path.

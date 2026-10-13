@@ -68,7 +68,7 @@ legibility. Therefore generated rows default to:
 
 ```text
 publication_ready = FALSE
-manual_review = REQUIRED
+manual_review = PENDING
 ```
 
 No script may set `publication_ready=TRUE` unless every machine-checkable item
@@ -91,3 +91,35 @@ Inspect the actual vector and 600-dpi raster files at their intended page size:
 
 Record the review result in `figure_qc.csv`; do not encode interpretation,
 Discussion language or publication claims in the figure-generation layer.
+
+## SCI Figure Style v1.1 Candidate
+
+This feature branch uses a classic/minimal hybrid with a white background,
+charcoal text, subtle axes, and no panel box. `tte_sci_colors()` names treatment,
+control, comparator, favorable, caution, neutral, text, and grid roles;
+`tte_sci_palette()` supplies a restrained categorical palette.
+
+Binary labels 0/1 map to control/treatment colors. Explicit control/reference/
+treatment labels use the same roles. Arbitrary strategy labels receive
+deterministic categorical colors; their names do not establish treatment roles.
+Survival, risk, and cumulative incidence share this mapping. Existing input
+contracts and supported group counts are unchanged; the reviewed fixtures use
+two strategies. Review larger or differently labeled strategy sets separately.
+
+Unweighted/Weighted use terracotta/navy with different shapes. Forest estimates
+and intervals use navy; sensitivity rows use slate unless explicitly labeled
+Primary. CCW statuses have semantic fills and repeated status text. LMTP uses
+charcoal Observed and navy Policy, with linetype and shape redundancy.
+
+Default text is 8 pt, with axes/legend labels at least 7 pt. Axis strokes are
+0.45 pt. ggplot geometry units remain explicit: curve linewidth 0.7 mm,
+CI linewidth 0.55 mm, reference linewidth 0.4 mm, forest point size 2.2 mm.
+The legacy geometry configuration fields do not override constructor geometry.
+Native R PDF/SVG devices quantize the requested 85/178 mm canvas to whole points;
+the measured widths are 84.67/177.80 mm in this environment (less than 1 pt
+rounding). No export or statistical contract has been relaxed.
+
+See the [native gallery](../../figure_gallery/README.md),
+[before/after pairs](../../figure_style_comparison/README.md), and
+[accessibility results](../../reports/sci_palette_accessibility_validation.md).
+The candidate and every gallery QC row await human visual adoption.

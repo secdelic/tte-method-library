@@ -150,6 +150,34 @@ plots <- list(
 )
 stopifnot(length(plots) == 14L, all(vapply(plots, inherits, logical(1), "ggplot")))
 
+# Style changes must preserve semantic mappings and non-color group encoding.
+stopifnot(
+  identical(unname(tte_sci_group_colors(c(1, 0))),
+            c(tte_sci_colors()$control, tte_sci_colors()$treatment)),
+  identical(tte_sci_group_colors(c("Strategy B", "Strategy A")),
+            tte_sci_group_colors(c("Strategy A", "Strategy B"))),
+  inherits(tte_theme_publication()$panel.border, "element_blank"),
+  identical(tte_theme_publication()$plot.background$fill, "white")
+)
+for (name in c("ps", "weights", "survival", "risk", "cumulative_incidence", "lmtp")) {
+  built <- ggplot2::ggplot_build(plots[[name]])$data
+  curves <- Filter(function(x) "linetype" %in% names(x), built)
+  stopifnot(length(curves) > 0L, length(unique(curves[[1]]$linetype)) == 2L)
+}
+for (name in c("love", "balance")) {
+  points <- tail(ggplot2::ggplot_build(plots[[name]])$data, 1)[[1]]
+  stopifnot(length(unique(points$shape)) == 2L)
+  stopifnot(setequal(unique(points$colour),
+                    c(tte_sci_colors()$comparator, tte_sci_colors()$treatment)))
+}
+ccw_layers <- ggplot2::ggplot_build(plots$ccw)$data
+stopifnot(identical(as.character(ccw_layers[[2]]$label),
+                   as.character(plots$ccw$data$status)))
+for (name in c("survival", "risk", "cumulative_incidence")) {
+  stopifnot(identical(plots[[name]]$scales$get_scales("colour")$palette(2),
+                     plots$survival$scales$get_scales("colour")$palette(2)))
+}
+
 tmp <- tempfile("publication_figure_test_")
 dir.create(tmp, recursive = TRUE)
 on.exit(unlink(tmp, recursive = TRUE, force = TRUE), add = TRUE)
