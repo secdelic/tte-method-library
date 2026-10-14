@@ -7,6 +7,7 @@ the requested physical dimensions must agree within one point (0.353 mm).
 from pathlib import Path
 import csv
 import math
+import os
 import subprocess
 import xml.etree.ElementTree as ET
 
@@ -15,10 +16,11 @@ import pdfplumber
 from pypdf import PdfReader
 
 root = Path.cwd()
-gallery = root / "figure_gallery"
+asset_root = root / os.environ.get("TTE_FIGURE_ASSET_ROOT", "output/sci_style_gallery")
+gallery = asset_root / "figure_gallery"
 preview = root / "output" / "sci_style_validation"
 preview.mkdir(parents=True, exist_ok=True)
-manifest = list(csv.DictReader((root / "figure_style_comparison" /
+manifest = list(csv.DictReader((asset_root / "figure_style_comparison" /
                                "figure_style_comparison_manifest.csv").open()))
 results = []
 metadata = []
@@ -80,7 +82,7 @@ for column, width_mm in (("single", 85), ("double", 178)):
                         str(pdf_path), str(preview / f"{entry['figure']}_{column}_pdf")],
                        check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 
-with (gallery / "export_validation.csv").open("w", newline="", encoding="utf-8") as stream:
+with (root / "figure_gallery" / "export_validation.csv").open("w", newline="", encoding="utf-8") as stream:
     writer = csv.DictWriter(stream, fieldnames=list(results[0]))
     writer.writeheader()
     writer.writerows(results)

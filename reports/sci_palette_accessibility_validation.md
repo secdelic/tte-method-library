@@ -1,5 +1,9 @@
 # SCI palette accessibility validation - v1.1 Candidate
 
+The numeric evidence below is retained. Full CVD preview PNGs are regenerable
+under ignored `output/sci_style_gallery/figure_gallery/accessibility/` and are
+not permanent source assets. Gallery documentation retains selected originals.
+
 Date: 2026-10-13. Scope: the actual 14 synthetic native gallery exports.
 This is AI-assisted technical and display review, not investigator visual
 adoption or approval of figures for a real study.
@@ -35,7 +39,7 @@ Group/state distinctions remained readable through non-color encoding.
 Color pairs can converge in simulated CVD or grayscale; these results do not
 establish that each swatch is distinguishable by color alone.
 See [palette simulations](../figure_gallery/accessibility/palette_simulations.csv)
-and the individual review links in the [gallery](../figure_gallery/README.md).
+and the rebuild instructions in the [gallery](../figure_gallery/README.md).
 
 | Native figure | Non-color distinction | Display review in all four modes |
 | --- | --- | --- |

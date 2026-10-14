@@ -22,8 +22,11 @@ stopifnot(length(before) == 14L, identical(names(before), names(after)))
 config <- candidate$read_figure_config("config_templates/figure_config.yml")
 baseline_config <- yaml::yaml.load(paste(original_config, collapse = "\n"))
 
-comparison_dir <- "figure_style_comparison"
-dir.create(comparison_dir, showWarnings = FALSE)
+asset_root <- Sys.getenv("TTE_FIGURE_ASSET_ROOT", unset = "output/sci_style_gallery")
+gallery_dir <- file.path(asset_root, "figure_gallery")
+comparison_dir <- file.path(asset_root, "figure_style_comparison")
+dir.create(comparison_dir, recursive = TRUE, showWarnings = FALSE)
+dir.create("figure_gallery/png", recursive = TRUE, showWarnings = FALSE)
 double_column <- c("figure_01_cohort_flow", "figure_02_missingness",
                    "figure_05_love_plot", "figure_06_standardized_balance",
                    "figure_07_difference_forest", "figure_08_ratio_forest",
@@ -48,13 +51,16 @@ for (figure in names(after)) {
   selected_column <- if (figure %in% double_column) "double" else "single"
   for (column in c("single", "double")) {
     export <- candidate$export_publication_figure(
-      after[[figure]], figure, file.path("figure_gallery", column), config,
+      after[[figure]], figure, file.path(gallery_dir, column), config,
       column = column)
     stopifnot(isTRUE(export$qc$machine_checks_pass),
               !export$qc$publication_ready, export$qc$manual_review == "PENDING")
     if (column == selected_column) {
-      file.copy(file.path("figure_gallery", column, paste0(figure, ".png")),
+      file.copy(file.path(gallery_dir, column, paste0(figure, ".png")),
                 file.path(comparison_dir, paste0(figure, "_candidate.png")),
+                overwrite = TRUE)
+      file.copy(file.path(gallery_dir, column, paste0(figure, ".png")),
+                file.path("figure_gallery", "png", paste0(figure, ".png")),
                 overwrite = TRUE)
     }
   }
@@ -63,11 +69,15 @@ for (figure in names(after)) {
     column = selected_column, vector_formats = "pdf", raster_formats = "png")
   # The before/after deliverables are PNGs; temporary original PDFs are removed.
   unlink(file.path(comparison_dir, paste0(figure, "_original.pdf")))
+  file.copy(file.path(comparison_dir, paste0(figure, "_original.png")),
+            file.path("figure_style_comparison", paste0(figure, "_original.png")),
+            overwrite = TRUE)
   manifest[[figure]] <- data.frame(
     figure = figure, baseline_commit = baseline_commit,
     fixture_source = "figure_gallery/native_fixture_plots.R", fixture_seed = 20260809,
     original_png = paste0(figure, "_original.png"),
     candidate_png = paste0(figure, "_candidate.png"),
+    documentation_candidate_png = paste0("figure_gallery/png/", figure, ".png"),
     width_mm = if (selected_column == "double") 178 else 85,
     height_mm = config$dimensions$default_height_mm, dpi = 600,
     fixture_data_identical = TRUE, native_layer_coordinates_identical = TRUE,
@@ -78,6 +88,12 @@ for (figure in names(after)) {
 unlink(file.path(comparison_dir, "figure_qc.csv"))
 utils::write.csv(do.call(rbind, manifest),
   file.path(comparison_dir, "figure_style_comparison_manifest.csv"), row.names = FALSE)
+file.copy(file.path(comparison_dir, "figure_style_comparison_manifest.csv"),
+          "figure_style_comparison/figure_style_comparison_manifest.csv", overwrite = TRUE)
+for (column in c("single", "double")) {
+  file.copy(file.path(gallery_dir, column, "figure_qc.csv"),
+    file.path("figure_gallery", paste0("figure_qc_", column, ".csv")), overwrite = TRUE)
+}
 utils::write.csv(do.call(rbind, invariance),
   "figure_gallery/figure_data_invariance.csv", row.names = FALSE)
 cat("SCI_NATIVE_GALLERY=PASS FIGURE_TYPES=14 WIDTHS=2 FORMATS=4 COMPARISONS=14\n")

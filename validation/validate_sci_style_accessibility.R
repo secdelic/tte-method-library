@@ -6,9 +6,12 @@ for (package in c("colorspace", "magick", "ggplot2", "rsvg")) {
 source("R/figures/publication_figures.R")
 source("figure_gallery/native_fixture_plots.R")
 plots <- tte_native_fixture_plots()
-manifest <- utils::read.csv("figure_style_comparison/figure_style_comparison_manifest.csv")
-preview_dir <- "figure_gallery/accessibility"
-dir.create(preview_dir, showWarnings = FALSE)
+asset_root <- Sys.getenv("TTE_FIGURE_ASSET_ROOT", unset = "output/sci_style_gallery")
+gallery_dir <- file.path(asset_root, "figure_gallery")
+comparison_dir <- file.path(asset_root, "figure_style_comparison")
+manifest <- utils::read.csv(file.path(comparison_dir, "figure_style_comparison_manifest.csv"))
+preview_dir <- file.path(gallery_dir, "accessibility")
+dir.create(preview_dir, recursive = TRUE, showWarnings = FALSE)
 transforms <- list(
   grayscale = colorspace::desaturate,
   deutan = function(x) colorspace::deutan(x, severity = 1, linear = TRUE),
@@ -20,7 +23,7 @@ palette_table <- data.frame(role = names(palette), original = unname(palette))
 for (mode in names(transforms)) {
   palette_table[[mode]] <- transforms[[mode]](palette)
   for (figure in names(plots)) {
-    path <- file.path("figure_style_comparison", paste0(figure, "_candidate.png"))
+    path <- file.path(comparison_dir, paste0(figure, "_candidate.png"))
     # Downsample the actual 600-DPI export for review; do not alter the deliverable.
     raster <- as.raster(magick::image_resize(magick::image_read(path), "1000x"))
     values <- substr(as.character(raster), 1, 7)
@@ -70,8 +73,12 @@ dir.create(svg_preview, recursive = TRUE, showWarnings = FALSE)
 for (column in c("single", "double")) {
   for (figure in names(plots)) {
     magick::image_write(magick::image_read_svg(
-      file.path("figure_gallery", column, paste0(figure, ".svg")), width = 1200),
+      file.path(gallery_dir, column, paste0(figure, ".svg")), width = 1200),
       file.path(svg_preview, paste0(figure, "_", column, "_svg.png")))
   }
+}
+for (name in c("palette_simulations.csv", "text_contrast.csv", "non_color_redundancy.csv")) {
+  file.copy(file.path(preview_dir, name), file.path("figure_gallery/accessibility", name),
+            overwrite = TRUE)
 }
 cat("SCI_ACCESSIBILITY_AIDS=PASS FIGURES=14 MODES=4 TEXT_CONTRAST_CHECKS=9\n")

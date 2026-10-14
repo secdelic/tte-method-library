@@ -1,5 +1,10 @@
 # Candidate external-surface audit
 
+Historical snapshot: `cbc4424`, before generated-asset retention changes.
+The 223-file scope below is retained as evidence of that exact snapshot;
+it is not the current PR file count. See the later PR #2 retention and visual
+audit reports for the current source/documentation surface and rebuild paths.
+
 Date: 2026-10-13. Scope: all 223 new/modified files in this candidate's
 Git diff against its latest-main base, including the actual exported assets,
 comparison PNGs, review previews, source/config changes, manifests and reports.

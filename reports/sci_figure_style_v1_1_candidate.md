@@ -1,5 +1,11 @@
 # SCI Figure Style v1.1 Candidate
 
+Historical rendering/validation snapshot: `cbc4424` (2026-10-13).
+The full asset matrix described below is now regenerable under ignored
+`output/sci_style_gallery/`; selected documentation PNGs and small evidence
+remain in Git. See `pr2_generated_asset_retention_audit.md` and
+`pr2_visual_audit.md` for the 2026-10-14 retention and human-review decision.
+
 Date: 2026-10-13. Branch: `feature/sci-figure-style-v1.1`.
 Base: latest fetched public `main`, `56c6314689aee66b2de588ac773c8770ca5be346`.
 Original style: immutable `v1.0.0` commit
