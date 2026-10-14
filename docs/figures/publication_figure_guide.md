@@ -122,4 +122,14 @@ rounding). No export or statistical contract has been relaxed.
 See the [native gallery](../../figure_gallery/README.md),
 [before/after pairs](../../figure_style_comparison/README.md), and
 [accessibility results](../../reports/sci_palette_accessibility_validation.md).
-The candidate and every gallery QC row await human visual adoption.
+The researcher confirmed the original style candidate's visual review PASS;
+each study-specific export still requires human publication review.
+
+## Additional publication information architecture
+
+The separate v1.2 candidate provides six additional constructors/composers for
+caller-supplied flow counts, schematic clone events, curves/risk tables and
+subgroup effects. See the [publication capability guide](publication_capability_guide.md)
+and [synthetic gallery](../../figure_gallery/publication_capability/README.md).
+These utilities preserve the SCI style and export contract; they implement no
+CCW, survival or competing-risk estimator.

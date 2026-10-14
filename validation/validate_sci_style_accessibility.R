@@ -12,29 +12,15 @@ comparison_dir <- file.path(asset_root, "figure_style_comparison")
 manifest <- utils::read.csv(file.path(comparison_dir, "figure_style_comparison_manifest.csv"))
 preview_dir <- file.path(gallery_dir, "accessibility")
 dir.create(preview_dir, recursive = TRUE, showWarnings = FALSE)
-transforms <- list(
-  grayscale = colorspace::desaturate,
-  deutan = function(x) colorspace::deutan(x, severity = 1, linear = TRUE),
-  protan = function(x) colorspace::protan(x, severity = 1, linear = TRUE),
-  tritan = function(x) colorspace::tritan(x, severity = 1, linear = TRUE)
-)
+source("validation/figure_accessibility_helpers.R")
+transforms <- tte_accessibility_transforms()
 palette <- unlist(tte_sci_colors())
 palette_table <- data.frame(role = names(palette), original = unname(palette))
 for (mode in names(transforms)) {
   palette_table[[mode]] <- transforms[[mode]](palette)
-  for (figure in names(plots)) {
-    path <- file.path(comparison_dir, paste0(figure, "_candidate.png"))
-    # Downsample the actual 600-DPI export for review; do not alter the deliverable.
-    raster <- as.raster(magick::image_resize(magick::image_read(path), "1000x"))
-    values <- substr(as.character(raster), 1, 7)
-    unique_colors <- unique(values)
-    converted <- transforms[[mode]](unique_colors)
-    mapped <- matrix(converted[match(values, unique_colors)], nrow = nrow(raster))
-    class(mapped) <- "raster"
-    magick::image_write(magick::image_read(mapped),
-      file.path(preview_dir, paste0(figure, "_", mode, ".png")))
-  }
 }
+tte_render_accessibility_previews(stats::setNames(file.path(comparison_dir,
+  paste0(names(plots), "_candidate.png")), names(plots)), preview_dir)
 utils::write.csv(palette_table, file.path(preview_dir, "palette_simulations.csv"), row.names = FALSE)
 
 contrast <- data.frame(surface = "figure text on white", foreground = tte_sci_colors()$text,

@@ -8,6 +8,7 @@ from pathlib import Path
 import csv
 import math
 import os
+import sys
 import subprocess
 import xml.etree.ElementTree as ET
 
@@ -16,16 +17,21 @@ import pdfplumber
 from pypdf import PdfReader
 
 root = Path.cwd()
-asset_root = root / os.environ.get("TTE_FIGURE_ASSET_ROOT", "output/sci_style_gallery")
+capability = "--capability-gallery" in sys.argv
+asset_root = root / ("output/publication_capability" if capability else
+                     os.environ.get("TTE_FIGURE_ASSET_ROOT", "output/sci_style_gallery"))
 gallery = asset_root / "figure_gallery"
-preview = root / "output" / "sci_style_validation"
+preview = root / "output" / ("publication_capability_validation" if capability else "sci_style_validation")
 preview.mkdir(parents=True, exist_ok=True)
-manifest = list(csv.DictReader((asset_root / "figure_style_comparison" /
-                               "figure_style_comparison_manifest.csv").open()))
+manifest_path = asset_root / "manifest.csv" if capability else asset_root / "figure_style_comparison" / "figure_style_comparison_manifest.csv"
+manifest = list(csv.DictReader(manifest_path.open()))
 results = []
 metadata = []
 for column, width_mm in (("single", 85), ("double", 178)):
     for entry in manifest:
+        if capability and entry["column"] != column:
+            continue
+        height_mm = float(entry["height_mm"])
         stem = gallery / column / entry["figure"]
         with Image.open(stem.with_suffix(".png")) as png_image, Image.open(stem.with_suffix(".tiff")) as tiff_image:
             assert ImageChops.difference(png_image.convert("RGB"), tiff_image.convert("RGB")).getbbox() is None
@@ -36,7 +42,7 @@ for column, width_mm in (("single", 85), ("double", 178)):
                 dpi = image.info.get("dpi")
                 assert dpi and max(abs(v - 600) for v in dpi) < .1, (path, dpi)
                 assert abs(image.width - width_mm / 25.4 * 600) <= 1
-                assert abs(image.height - 110 / 25.4 * 600) <= 1
+                assert abs(image.height - height_mm / 25.4 * 600) <= 1
                 results.append(dict(file=str(path.relative_to(root)), format=suffix,
                     requested_width_mm=width_mm, measured_width_mm=image.width / dpi[0] * 25.4,
                     measured_height_mm=image.height / dpi[1] * 25.4, dpi=dpi[0],
@@ -53,7 +59,7 @@ for column, width_mm in (("single", 85), ("double", 178)):
         with pdfplumber.open(pdf_path) as pdf:
             page = pdf.pages[0]
             assert abs(page.width - width_mm / 25.4 * 72) <= 1
-            assert abs(page.height - 110 / 25.4 * 72) <= 1
+            assert abs(page.height - height_mm / 25.4 * 72) <= 1
             # pdfminer reports rotated character advances as `size`. Use the
             # perpendicular extent for the native 90-degree axis titles.
             font_sizes = [c["size"] if c["upright"] else c["width"] for c in page.chars]
@@ -70,7 +76,7 @@ for column, width_mm in (("single", 85), ("double", 178)):
         svg = tree.getroot()
         viewbox = [float(v) for v in svg.attrib["viewBox"].split()]
         assert abs(viewbox[2] - width_mm / 25.4 * 72) <= 1
-        assert abs(viewbox[3] - 110 / 25.4 * 72) <= 1
+        assert abs(viewbox[3] - height_mm / 25.4 * 72) <= 1
         assert not any(node.tag.endswith("}image") for node in svg.iter())
         results.append(dict(file=str(svg_path.relative_to(root)), format="svg",
             requested_width_mm=width_mm, measured_width_mm=viewbox[2] / 72 * 25.4,
@@ -82,7 +88,8 @@ for column, width_mm in (("single", 85), ("double", 178)):
                         str(pdf_path), str(preview / f"{entry['figure']}_{column}_pdf")],
                        check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 
-with (root / "figure_gallery" / "export_validation.csv").open("w", newline="", encoding="utf-8") as stream:
+report_path = root / "reports" / "publication_capability_export_validation.csv" if capability else root / "figure_gallery" / "export_validation.csv"
+with report_path.open("w", newline="", encoding="utf-8") as stream:
     writer = csv.DictWriter(stream, fieldnames=list(results[0]))
     writer.writeheader()
     writer.writerows(results)
@@ -105,13 +112,16 @@ def sheet(paths, labels, destination, cols=4):
             canvas.paste(image.convert("RGB"), (x + (cell_w - image.width) // 2, y + 30))
     canvas.save(destination)
 
-labels = [e["figure"].removeprefix("figure_").replace("_", " ") for e in manifest]
 for column in ("single", "double"):
-    sheet([preview / f"{e['figure']}_{column}_pdf.png" for e in manifest], labels,
+    entries = [e for e in manifest if not capability or e["column"] == column]
+    labels = [e["figure"].removeprefix("figure_").replace("_", " ") for e in entries]
+    sheet([preview / f"{e['figure']}_{column}_pdf.png" for e in entries], labels,
           preview / f"contact_{column}_pdf.png")
-    sheet([preview / f"{e['figure']}_{column}_svg.png" for e in manifest], labels,
+    sheet([preview / f"{e['figure']}_{column}_svg.png" for e in entries], labels,
           preview / f"contact_{column}_svg.png")
 for mode in ("grayscale", "deutan", "protan", "tritan"):
-    sheet([gallery / "accessibility" / f"{e['figure']}_{mode}.png" for e in manifest],
+    entries = [e for e in manifest if not capability or e["column"] == "single"]
+    labels = [e["figure"].removeprefix("figure_").replace("_", " ") for e in entries]
+    sheet([gallery / "accessibility" / f"{e['figure']}_{mode}.png" for e in entries],
           labels, preview / f"contact_{mode}.png")
-print("SCI_EXPORT_FILE_INSPECTION=PASS FILES=112 PDF_RENDERED=28 MINIMUM_FONT_PT=7")
+print(f"SCI_EXPORT_FILE_INSPECTION=PASS FILES={len(results)} PDF_RENDERED={len(results)//4} MINIMUM_FONT_PT=7")

@@ -127,7 +127,15 @@ The figure system supports vector PDF/SVG and 600-DPI TIFF/PNG output, 85-mm and
 The feature branch includes an [SCI Figure Style v1.1 Candidate gallery](figure_gallery/README.md)
 and [v1.0.0 before/after comparison](figure_style_comparison/README.md).
 This visual candidate does not change the stable software version, statistical
-estimators, estimands, or module readiness. Investigator visual adoption is pending.
+estimators, estimands, or module readiness. The researcher confirmed visual
+review PASS for the original style candidate; merging remains a human decision.
+
+The separate [publication capability v1.2 candidate](docs/figures/publication_capability_guide.md)
+adds participant flowcharts, clone/event timelines, supplied-curve risk tables,
+outcome panels and hierarchical subgroup forests. See the
+[original synthetic gallery](figure_gallery/publication_capability/README.md)
+and [benchmark capability audit](reports/jar_tte_benchmark_capability_matrix.md).
+Visualization support does not establish CCW production readiness.
 
 ## Synthetic examples
 

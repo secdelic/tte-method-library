@@ -503,7 +503,10 @@ export_publication_figure <- function(
     column = c("single", "double"), height_mm = NULL,
     vector_formats = NULL, raster_formats = NULL) {
   tte_require_ggplot2()
-  if (!inherits(plot, "ggplot")) stop("plot must be a ggplot object")
+  native_composite <- inherits(plot, "tte_publication_figure") && inherits(plot, "grob")
+  if (!inherits(plot, "ggplot") && !native_composite) {
+    stop("plot must be a ggplot or native tte_publication_figure grob")
+  }
   figure <- tte_safe_output_stem(figure)
   column <- match.arg(column)
   config_checks <- validate_figure_config(config)
