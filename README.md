@@ -127,7 +127,8 @@ The figure system supports vector PDF/SVG and 600-DPI TIFF/PNG output, 85-mm and
 The feature branch includes an [SCI Figure Style v1.1 Candidate gallery](figure_gallery/README.md)
 and [v1.0.0 before/after comparison](figure_style_comparison/README.md).
 This visual candidate does not change the stable software version, statistical
-estimators, estimands, or module readiness. Investigator visual adoption is pending.
+estimators, estimands, or module readiness. The researcher confirmed visual
+review PASS for the original style candidate; merging remains a human decision.
 
 ## Synthetic examples
 
