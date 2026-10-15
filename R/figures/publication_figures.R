@@ -48,21 +48,63 @@ tte_theme_publication <- function(base_size = 8, base_family = "sans") {
       !is.finite(base_size) || base_size < 7) {
     stop("base_size must be a finite value of at least 7 pt")
   }
-  ggplot2::theme_bw(base_size = base_size, base_family = base_family) +
+  colors <- tte_sci_colors()
+  ggplot2::theme_classic(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
+      text = ggplot2::element_text(colour = colors$text),
+      plot.background = ggplot2::element_rect(fill = "white", colour = NA),
+      panel.background = ggplot2::element_rect(fill = "white", colour = NA),
+      panel.border = ggplot2::element_blank(),
+      axis.line = ggplot2::element_line(colour = colors$control,
+                                       linewidth = 0.45 / ggplot2::.pt),
+      axis.ticks = ggplot2::element_line(colour = colors$control,
+                                        linewidth = 0.45 / ggplot2::.pt),
+      panel.grid.major.y = ggplot2::element_line(colour = colors$grid,
+                                                linewidth = 0.3 / ggplot2::.pt),
+      panel.grid.major.x = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
       legend.position = "bottom",
       plot.title.position = "plot",
       axis.title = ggplot2::element_text(size = base_size),
-      axis.text = ggplot2::element_text(size = max(7, base_size - 1)),
+      axis.text = ggplot2::element_text(size = max(7, base_size - 1),
+                                       colour = colors$text),
+      legend.title = ggplot2::element_text(size = base_size),
       legend.text = ggplot2::element_text(size = max(7, base_size - 1)),
       plot.margin = ggplot2::margin(5.5, 7, 5.5, 7)
     )
 }
 
+tte_sci_colors <- function() {
+  list(
+    treatment = "#355C7D", control = "#6D7378", comparator = "#AD6058",
+    favorable = "#5B8E7D", caution = "#C49A5A", neutral = "#A5ADB4",
+    text = "#30383F", grid = "#E7EAEC"
+  )
+}
+
+tte_sci_palette <- function() {
+  c("#355C7D", "#AD6058", "#5B8E7D", "#C49A5A", "#687780", "#30383F")
+}
+
 tte_journal_palette <- function() {
-  # Generic Okabe-Ito-style colors; no journal-specific branding is encoded.
-  c("#0072B2", "#D55E00", "#009E73", "#CC79A7", "#000000")
+  tte_sci_palette()
+}
+
+tte_sci_group_colors <- function(groups, roles = c(
+    "0" = "control", "1" = "treatment", "control" = "control",
+    "reference" = "control", "treatment" = "treatment")) {
+  # Known labels have semantic colors. Other labels keep deterministic,
+  # categorical colors; an arbitrary strategy name does not imply a role.
+  levels <- if (is.factor(groups)) levels(droplevels(groups)) else
+    sort(unique(as.character(groups)))
+  colors <- tte_sci_colors()
+  values <- rep(c(colors$treatment, colors$control, colors$comparator,
+                  colors$favorable, colors$caution, colors$text),
+                length.out = length(levels))
+  matched <- roles[tolower(trimws(levels))]
+  known <- !is.na(matched)
+  values[known] <- unlist(colors[matched[known]], use.names = FALSE)
+  stats::setNames(values, levels)
 }
 
 tte_normalize_effect_scale <- function(effect_scale) {
@@ -127,10 +169,11 @@ plot_cohort_flow <- function(data, base_size = 8) {
   if (any(data$n < 0)) stop("Cohort-flow n cannot be negative")
   data$stage <- factor(data$stage, levels = rev(unique(data$stage)))
   ggplot2::ggplot(data, ggplot2::aes(x = stage, y = n)) +
-    ggplot2::geom_col(width = 0.65, fill = "grey70", colour = "black",
-                      linewidth = 0.4) +
+    ggplot2::geom_col(width = 0.65, fill = "#EEF2F5", colour = "#687780",
+                      linewidth = 0.45 / ggplot2::.pt) +
     ggplot2::geom_text(ggplot2::aes(label = n), hjust = -0.15,
-                       size = base_size * 25.4 / 72.27) +
+                       size = base_size / ggplot2::.pt,
+                       colour = tte_sci_colors()$text) +
     ggplot2::coord_flip(clip = "off") +
     ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = c(0, 0.14))) +
     ggplot2::labs(x = NULL, y = "Participants") +
@@ -143,7 +186,7 @@ plot_missingness <- function(data, base_size = 8) {
   ggplot2::ggplot(data, ggplot2::aes(
     x = missing_fraction, y = stats::reorder(variable, missing_fraction)
   )) +
-    ggplot2::geom_col(fill = "grey55", colour = "black", linewidth = 0.3) +
+    ggplot2::geom_col(fill = "#687780", colour = NA) +
     ggplot2::scale_x_continuous(labels = function(x) paste0(round(100 * x), "%"),
                                limits = c(0, 1)) +
     ggplot2::labs(x = "Missing observations", y = NULL) +
@@ -160,8 +203,8 @@ plot_propensity_score_distribution <- function(data, base_size = 8) {
   ggplot2::ggplot(data, ggplot2::aes(
     x = propensity_score, colour = factor(treatment), linetype = factor(treatment)
   )) +
-    ggplot2::geom_density(linewidth = 0.7, na.rm = TRUE) +
-    ggplot2::scale_colour_manual(values = tte_journal_palette()) +
+    ggplot2::geom_density(linewidth = 0.7, na.rm = TRUE, key_glyph = "path") +
+    ggplot2::scale_colour_manual(values = tte_sci_group_colors(data$treatment)) +
     ggplot2::labs(x = "Propensity score", y = "Density",
                   colour = "Treatment", linetype = "Treatment") +
     tte_theme_publication(base_size)
@@ -176,8 +219,8 @@ plot_weight_distribution <- function(data, base_size = 8) {
   ggplot2::ggplot(data, ggplot2::aes(
     x = weight, colour = factor(treatment), linetype = factor(treatment)
   )) +
-    ggplot2::geom_density(linewidth = 0.7, na.rm = TRUE) +
-    ggplot2::scale_colour_manual(values = tte_journal_palette()) +
+    ggplot2::geom_density(linewidth = 0.7, na.rm = TRUE, key_glyph = "path") +
+    ggplot2::scale_colour_manual(values = tte_sci_group_colors(data$treatment)) +
     ggplot2::labs(x = "Analysis weight", y = "Density",
                   colour = "Treatment", linetype = "Treatment") +
     tte_theme_publication(base_size)
@@ -200,11 +243,14 @@ plot_love <- function(data, threshold = 0.1, base_size = 8) {
     x = absolute_smd, y = stats::reorder(variable, absolute_smd),
     colour = stage, shape = stage
   )) +
-    ggplot2::geom_vline(xintercept = threshold, linetype = 2, linewidth = 0.45) +
+    ggplot2::geom_vline(xintercept = threshold, linetype = 2, linewidth = 0.4,
+                        colour = tte_sci_colors()$neutral) +
     ggplot2::geom_point(size = 2) +
     ggplot2::scale_colour_manual(values = c(
-      "Unweighted" = "#D55E00", "Weighted" = "#0072B2"
+      "Unweighted" = tte_sci_colors()$comparator,
+      "Weighted" = tte_sci_colors()$treatment
     )) +
+    ggplot2::scale_shape_manual(values = c("Unweighted" = 16, "Weighted" = 17)) +
     ggplot2::labs(x = "Absolute standardized mean difference", y = NULL,
                   colour = NULL, shape = NULL) +
     tte_theme_publication(base_size)
@@ -220,10 +266,12 @@ plot_standardized_balance <- function(data, threshold = 0.1, base_size = 8) {
     x = smd, y = stats::reorder(variable, abs(smd)), colour = stage, shape = stage
   )) +
     ggplot2::geom_vline(xintercept = c(-threshold, threshold), linetype = 2,
-                        linewidth = 0.45) +
-    ggplot2::geom_vline(xintercept = 0, colour = "grey55", linewidth = 0.35) +
+                        linewidth = 0.4, colour = tte_sci_colors()$neutral) +
+    ggplot2::geom_vline(xintercept = 0, colour = tte_sci_colors()$neutral,
+                        linewidth = 0.4) +
     ggplot2::geom_point(size = 2) +
-    ggplot2::scale_colour_manual(values = tte_journal_palette()) +
+    ggplot2::scale_colour_manual(values = tte_sci_group_colors(data$stage,
+      roles = c("unweighted" = "comparator", "weighted" = "treatment"))) +
     ggplot2::labs(x = "Standardized mean difference", y = NULL,
                   colour = NULL, shape = NULL) +
     tte_theme_publication(base_size)
@@ -239,11 +287,11 @@ plot_forest <- function(data, effect_scale, null_value = NULL, base_size = 8,
   data$label <- factor(data$label, levels = rev(unique(data$label)))
   p <- ggplot2::ggplot(data, ggplot2::aes(y = label, x = estimate)) +
     ggplot2::geom_vline(xintercept = resolved_null, linetype = 2,
-                        linewidth = 0.45) +
+                        linewidth = 0.4, colour = tte_sci_colors()$neutral) +
     ggplot2::geom_segment(ggplot2::aes(
       x = ci_lower, xend = ci_upper, yend = label
-    ), linewidth = 0.6) +
-    ggplot2::geom_point(size = 2) +
+    ), linewidth = 0.55, colour = tte_sci_colors()$treatment) +
+    ggplot2::geom_point(size = 2.2, colour = tte_sci_colors()$treatment) +
     ggplot2::labs(x = x_label, y = NULL) +
     tte_theme_publication(base_size)
   attr(p, "tte_effect_scale") <- normalized_scale
@@ -270,13 +318,13 @@ plot_survival_risk <- function(data, measure = c("survival", "risk"),
   if (all(c("ci_lower", "ci_upper") %in% names(data))) {
     p <- p + ggplot2::geom_ribbon(
       ggplot2::aes(ymin = ci_lower, ymax = ci_upper, fill = strategy),
-      alpha = 0.13, colour = NA, show.legend = FALSE
+      alpha = 0.10, colour = NA, show.legend = FALSE
     )
   }
   p +
     ggplot2::geom_step(linewidth = 0.7) +
-    ggplot2::scale_colour_manual(values = tte_journal_palette()) +
-    ggplot2::scale_fill_manual(values = tte_journal_palette()) +
+    ggplot2::scale_colour_manual(values = tte_sci_group_colors(data$strategy)) +
+    ggplot2::scale_fill_manual(values = tte_sci_group_colors(data$strategy)) +
     ggplot2::coord_cartesian(ylim = c(0, 1)) +
     ggplot2::labs(x = "Follow-up time",
                   y = if (measure == "survival") "Survival probability" else "Risk",
@@ -297,19 +345,48 @@ plot_sensitivity_forest <- function(data, effect_scale, null_value = NULL,
     label = data$analysis, estimate = data$estimate,
     ci_lower = data$ci_lower, ci_upper = data$ci_upper
   )
-  plot_forest(
+  p <- plot_forest(
     forest_data, effect_scale = effect_scale, null_value = null_value,
     base_size = base_size, x_label = "Sensitivity estimate (95% CI)"
   )
+  # Primary is emphasized only when the supplied analysis label says Primary.
+  colors <- ifelse(tolower(trimws(data$analysis)) == "primary",
+                   tte_sci_colors()$treatment, tte_sci_colors()$control)
+  p$layers[[2]]$aes_params$colour <- colors
+  p$layers[[3]]$aes_params$colour <- colors
+  p
 }
 
 plot_ccw_strategy_schematic <- function(data, base_size = 8) {
   tte_figure_columns(data, c("strategy", "period", "status"),
                      "CCW schematic data")
   tte_finite_numeric(data$period, "CCW period")
+  fills <- tte_sci_group_colors(data$status,
+    roles = c("baseline" = "caution", "grace" = "caution",
+              "follow-up" = "treatment", "adherent" = "favorable",
+              "censored" = "comparator", "deviation" = "comparator",
+              "inactive" = "grid", "not-at-risk" = "grid"))
+  # Choose the higher-contrast text for each status tile (sRGB luminance).
+  rgb <- grDevices::col2rgb(fills) / 255
+  linear <- ifelse(rgb <= 0.04045, rgb / 12.92, ((rgb + 0.055) / 1.055)^2.4)
+  luminance <- colSums(linear * c(0.2126, 0.7152, 0.0722))
+  tile_text <- "#151B20"
+  text_rgb <- grDevices::col2rgb(tile_text) / 255
+  text_linear <- ifelse(text_rgb <= 0.04045, text_rgb / 12.92,
+                        ((text_rgb + 0.055) / 1.055)^2.4)
+  text_luminance <- sum(text_linear * c(0.2126, 0.7152, 0.0722))
+  dark_contrast <- (pmax(luminance, text_luminance) + 0.05) /
+    (pmin(luminance, text_luminance) + 0.05)
+  light_contrast <- 1.05 / (luminance + 0.05)
+  text_colors <- stats::setNames(
+    ifelse(light_contrast > dark_contrast, "#FFFFFF", tile_text),
+    names(fills))
   ggplot2::ggplot(data, ggplot2::aes(x = period, y = strategy, fill = status)) +
     ggplot2::geom_tile(colour = "white", linewidth = 0.35) +
-    ggplot2::scale_fill_manual(values = tte_journal_palette()) +
+    ggplot2::scale_fill_manual(values = fills) +
+    ggplot2::geom_text(ggplot2::aes(label = status, colour = status),
+                       size = base_size / ggplot2::.pt, show.legend = FALSE) +
+    ggplot2::scale_colour_manual(values = text_colors, guide = "none") +
     ggplot2::labs(x = "Follow-up period", y = "Cloned strategy", fill = "Status") +
     tte_theme_publication(base_size)
 }
@@ -329,7 +406,7 @@ plot_lmtp_policy <- function(data, base_size = 8) {
     ggplot2::geom_line(linewidth = 0.7) +
     ggplot2::geom_point(size = 2) +
     ggplot2::scale_colour_manual(values = c(
-      "Observed" = "#000000", "Policy" = "#0072B2"
+      "Observed" = tte_sci_colors()$text, "Policy" = tte_sci_colors()$treatment
     )) +
     ggplot2::labs(x = "Treatment time", y = "Treatment value",
                   colour = NULL, linetype = NULL, shape = NULL) +

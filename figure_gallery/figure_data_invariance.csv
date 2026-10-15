@@ -1,0 +1,15 @@
+"figure","fixture_data_identical","native_layer_coordinates_identical"
+"figure_01_cohort_flow",TRUE,TRUE
+"figure_02_missingness",TRUE,TRUE
+"figure_03_propensity_score_distribution",TRUE,TRUE
+"figure_04_weight_distribution",TRUE,TRUE
+"figure_05_love_plot",TRUE,TRUE
+"figure_06_standardized_balance",TRUE,TRUE
+"figure_07_difference_forest",TRUE,TRUE
+"figure_08_ratio_forest",TRUE,TRUE
+"figure_09_survival_curve",TRUE,TRUE
+"figure_10_risk_curve",TRUE,TRUE
+"figure_11_cumulative_incidence",TRUE,TRUE
+"figure_12_sensitivity_forest",TRUE,TRUE
+"figure_13_ccw_strategy_schematic",TRUE,TRUE
+"figure_14_lmtp_policy_plot",TRUE,TRUE

@@ -16,8 +16,8 @@ export:
   raster_dpi: 600
   background: "white"
 palette:
-  name: "journal_safe_colorblind"
-  colors: ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#000000"]
+  name: "sci_style_v1_1_candidate"
+  colors: ["#355C7D", "#AD6058", "#5B8E7D", "#C49A5A", "#687780", "#30383F"]
   grayscale_compatible: true
   use_shape_and_linetype_redundancy: true
 style:

@@ -1,0 +1,15 @@
+"figure","encoding","confirmed"
+"figure_01_cohort_flow","Stage labels and bar lengths",TRUE
+"figure_02_missingness","Variable labels and bar lengths",TRUE
+"figure_03_propensity_score_distribution","Linetype",TRUE
+"figure_04_weight_distribution","Linetype",TRUE
+"figure_05_love_plot","Shape",TRUE
+"figure_06_standardized_balance","Shape",TRUE
+"figure_07_difference_forest","Row labels and CI position",TRUE
+"figure_08_ratio_forest","Row labels and CI position",TRUE
+"figure_09_survival_curve","Linetype",TRUE
+"figure_10_risk_curve","Linetype",TRUE
+"figure_11_cumulative_incidence","Linetype",TRUE
+"figure_12_sensitivity_forest","Analysis labels and CI position",TRUE
+"figure_13_ccw_strategy_schematic","Status text within every tile",TRUE
+"figure_14_lmtp_policy_plot","Linetype and shape",TRUE

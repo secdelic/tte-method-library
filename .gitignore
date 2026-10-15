@@ -22,3 +22,7 @@ release_human_metadata.yml
 .Ruserdata
 __pycache__/
 *.pyc
+/figure_gallery/single/
+/figure_gallery/double/
+/figure_gallery/accessibility/*.png
+/figure_style_comparison/*_candidate.png
