@@ -14,6 +14,10 @@ Optional `reason` text can describe inclusion/exclusion steps. Edges contain
 to one starting population and acyclic. Counts are supplied, never calculated
 from paper numbers or silently reconciled. The older cohort bar chart remains.
 
+The gallery's 620/480/140/240/240 flow is explicitly a generic two-group
+allocation, not CCW baseline cloning. Its 240/240 counts must not be relabeled
+as clones from all 480 eligible subjects.
+
 ## Research flow and clone/censor timeline
 
 `plot_tte_ccw_timeline(clones, events, research_steps=NULL)` requires clone
@@ -24,7 +28,14 @@ optional `display_label` controls concise row labels. Event records contain
 `natural_censor`, `outcome`, `competing_event`. Treatment/event times are not
 jittered. Coincident events are separated vertically within the same lane.
 Grace shading is limited to each clone's supplied follow-up, while the explicit
-boundary remains visible. Square endpoints mark the supplied follow-up end.
+boundary remains visible. A supplied terminal event marks the follow-up end
+without an overprinted square; squares mark ends without a terminal event.
+The constructor checks event types/times, not cross-clone scientific validity.
+For CCW use, the caller must supply a consistent original subject history:
+actual treatment, observation loss and terminal event originate at subject
+level; clone-specific artificial censoring can end analysis contribution earlier.
+The gallery supplies such an explicit synthetic history, without adopting a
+production CCW protocol or imposing a general same-time event priority.
 
 Optional `research_steps` supplies a generic box/connector process header.
 These stage labels describe the caller's intended process, not methods executed
@@ -47,6 +58,31 @@ must be established by the investigator. Weighted risk-set mass is not an
 integer participant count. `effect_annotation` is literal caller-supplied
 text, displayed outside the data panel; no effect or clinical interpretation
 is derived from the curve. `time_label` allows explicit time units.
+
+The four quantities below are different and must not be relabeled:
+
+| Quantity | Counting meaning |
+| --- | --- |
+| Original subjects | Distinct people contributing to the stated risk set |
+| Analysis units | Distinct units defined by the study, which could be people, admissions or other explicitly defined units |
+| Clones | Strategy-specific replicated analysis records; not a count of distinct people across strategies |
+| Weighted risk-set mass | Sum of weights over an explicitly defined risk set; generally non-integer and not a patient count |
+
+Never round weighted mass into `n_at_risk`. This API requires integer counts,
+but integer validation alone cannot establish the unit (a weighted mass could
+coincidentally be an integer). A real CCW caption/legend or caller metadata
+must identify the unit, strategy-specific denominator, time unit, whether
+counts are just before or after t, and the ordering of same-time events/censors.
+
+No statistical interface change is required for the current gallery. The
+minimal backward-compatible solution is an explicit caller sidecar, attached
+as `attr(number_at_risk, "risk_count_metadata")` and/or saved beside the figure.
+The single-curve wrapper retains the supplied table attribute; it does not
+validate or automatically print this metadata, and composers should be delivered
+with the same sidecar/caption. The gallery defines distinct synthetic original
+subjects just before all events/censors at t, in synthetic time units. A future
+named caption/metadata argument could be considered separately; none is added
+here. Real-study conventions must come from that study's approved definition.
 
 ## Outcome panels
 
@@ -93,6 +129,14 @@ benchmark cohort. The supplied CIF example is independent of the survival
 example, not a 1-KM calculation with competing events censored. The full
 72-output matrix and 36 CVD/grayscale previews stay
 under ignored `output/publication_capability/`; selected PNGs document the APIs.
+
+Toy 95% CI bounds are supplied explicitly for display, with no estimated
+coverage claim. Curve ribbons connect the supplied pointwise bounds; the effect
+contrast CI is a separate supplied fixture, not inferred by subtracting bands.
+The annotations identify survival/CIF, Treatment-minus-Control difference and
+t=12. The 30/60 panel examples rescale time only; their probabilities/bounds
+are reused toy values, not independent estimates. Difference forests use null=0;
+ratio forests use null=1 on a linear ratio axis. Interaction P is literal input.
 
 ```text
 Rscript tests/test_publication_capabilities.R

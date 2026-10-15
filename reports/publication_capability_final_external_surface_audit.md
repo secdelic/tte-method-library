@@ -1,17 +1,17 @@
 # Publication capability final external-surface audit
 
-Date: 2026-10-15. Scope: 30 current added/modified v1.2 PR files (21 text/source
+Date: 2026-10-15; semantic revision. Scope: 31 current added/modified v1.2 PR files (22 text/source
 files and nine documentation PNGs), plus the 72 actual native exports available
 in the local ignored output matrix. The nine documentation PNGs are byte-identical
-copies of nine exported PNGs, counted once: 93 unique delivered files.
-The selected PNGs total 1,748,287 bytes. Full exports and simulated previews
+copies of nine exported PNGs, counted once: 94 unique delivered files.
+The selected PNGs total 1,824,955 bytes. Full exports and simulated previews
 are not committed to Git. The unchanged PR #2 scope has its own bounded
 [60-file audit](pr2_final_external_surface_audit.md); it is not double-counted here.
 
 ```text
 FINAL_EXTERNAL_SURFACE_AUDIT
-FILES_CHECKED = 93
-FILES_TOTAL = 93
+FILES_CHECKED = 94
+FILES_TOTAL = 94
 UNINTENDED_TOOL_OR_TEMPLATE_LABELS = NONE
 IDENTITY_METADATA_REVIEW = DESCRIPTION Authors@R xuankun zheng matches existing CITATION.cff; reviewed and preserved; PDFs have no Author field
 NORMAL_SOFTWARE_METADATA = PDF Creator R / Producer R 4.5.1 / Title R Graphics Output / native timestamps; PNG/TIFF resolution and TIFF LZW tags

@@ -170,6 +170,11 @@ plot_tte_ccw_timeline <- function(clones, events, base_size = 8, research_steps 
       if (length(x) == 1L) 0 else seq(-.14, .14, length.out = length(x))
     })
   }
+  # A terminal event already marks the end. Do not obscure its glyph with a
+  # second hollow square at the same time; retain squares for unmarked ends.
+  terminal_at_end <- events$event_type %in% c("artificial_censor", "natural_censor", "outcome", "competing_event") &
+    events$time == clones$followup_end[i]
+  unmarked_ends <- lanes[!lanes$clone_id %in% events$clone_id[terminal_at_end], , drop = FALSE]
   p <- ggplot2::ggplot(lanes) +
     ggplot2::geom_rect(ggplot2::aes(xmin = followup_start, xmax = pmin(grace_end, followup_end),
       ymin = row - .35, ymax = row + .35), fill = tte_sci_colors()$caution, alpha = .16) +
@@ -178,7 +183,7 @@ plot_tte_ccw_timeline <- function(clones, events, base_size = 8, research_steps 
     ggplot2::geom_segment(ggplot2::aes(x = grace_end, xend = grace_end,
       y = row - .35, yend = row + .35), colour = tte_sci_colors()$control,
       linetype = 2, linewidth = .4) +
-    ggplot2::geom_point(ggplot2::aes(x = followup_end, y = row),
+    ggplot2::geom_point(data = unmarked_ends, ggplot2::aes(x = followup_end, y = row),
       shape = 0, size = 2, colour = tte_sci_colors()$control) +
     ggplot2::geom_point(data = marks, ggplot2::aes(x = time, y = row, shape = event_type),
       size = 2.3, colour = tte_sci_colors()$text) +

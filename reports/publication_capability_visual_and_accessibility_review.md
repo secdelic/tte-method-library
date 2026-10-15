@@ -12,8 +12,8 @@ review, not researcher approval of the new figures or a real study.
 | Canvas | Native whole-point PDF/SVG quantization: 84.67/177.80 mm for requested 85/178 mm; error less than 1 pt. Requested heights are recorded in the manifest. |
 | Fonts | Extractable actual PDF text minimum 7 pt. SVG glyphs are outlines, visually inspected rather than asserted as extractable text. |
 | Text/page clipping | All 18 PDF text-bounding checks report zero outside-page text; actual PDF/SVG renders show no clipped synthetic labels/counts/CI text. This does not certify arbitrary future long labels or dense real datasets. |
-| Flow / timelines | Boxes/connectors, exclusions/branches/counts, research stages, clone/strategy lanes, event shapes, grace boundaries and endpoints visible. Tied events are vertically separated without changing times. |
-| Risk tables | Raw counts preserved; endpoint alignment prevents left-row-label collision and last-count clipping; curve/table plotting widths aligned. Row labels have a visible margin from counts. |
+| Flow / timelines | Boxes/connectors, exclusions/branches/counts, research stages, clone/strategy lanes, event shapes, grace boundaries and endpoints visible. Tied events are vertically separated without changing times. Coherent original subject histories underpin the timelines; terminal glyphs no longer have overprinted endpoint squares. |
+| Risk tables | Raw counts preserved; caller sidecar explicitly identifies unweighted original-subject counts just before t; endpoint alignment prevents left-row-label collision and last-count clipping; curve/table plotting widths aligned. Row labels have a visible margin from counts. |
 | Outcome panels | Strategy mapping and single legend consistent. Panel letters visible. Optional shared x range tested; example horizons are caller-supplied. |
 | Forests | Neutral difference/ratio null lines, CIs, hierarchy, indentation, estimate/CI/N/interaction text visible. Shared rows and fonts; restrained panel gutter; dense 85-mm assembly stacks vertically. |
 | CI ribbons / reference lines | Ribbons remain visible below curves; reference lines remain visible in grayscale/CVD previews. No uncertainty or comparison is selected by significance. |
@@ -39,3 +39,5 @@ Evidence: [actual file checks](publication_capability_export_validation.csv),
 `publication_ready=FALSE`; `manual_review=PENDING` for all new QC rows.
 The researcher's earlier 14-figure cbc4424 PASS applies to the original style
 candidate only and is not reused as approval of this new capability gallery.
+
+Semantic revision: see the [fixture before/after and symbol defect record](publication_capability_semantic_qa.md). The generic flow is visibly distinguished from CCW cloning; annotation outcome/contrast/horizon and toy time units are explicit. A precommit 85-mm multi-panel label exceeded the page by 0.49 pt; shortening only the fixture label to `Toy time units` resolved the failure without shrinking fonts or relaxing checks. The regenerated 72-file inspection passed. Researcher acceptance remains pending for the revised HEAD.
