@@ -12,6 +12,8 @@ Imports:
     cobalt,
     digest,
     ggplot2,
+    gtable,
+    grid,
     mice,
     WeightIt,
     yaml

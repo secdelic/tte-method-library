@@ -124,11 +124,23 @@ The publication table layer supports unweighted and weighted Table 1 summaries w
 
 The figure system supports vector PDF/SVG and 600-DPI TIFF/PNG output, 85-mm and 178-mm widths, minimum 7-point fonts, colorblind-aware palettes and grayscale redundancy. Machine checks do not replace study-specific human visual approval.
 
-The feature branch includes an [SCI Figure Style v1.1 Candidate gallery](figure_gallery/README.md)
+SCI Figure Style v1.1 is merged into `main`; see its [original gallery](figure_gallery/README.md)
 and [v1.0.0 before/after comparison](figure_style_comparison/README.md).
-This visual candidate does not change the stable software version, statistical
-estimators, estimands, or module readiness. The researcher confirmed visual
-review PASS for the original style candidate; merging remains a human decision.
+The researcher confirmed visual review PASS for all 14 original native figure
+variants at both 85 mm and 178 mm. This style approval does not change the stable
+software version, statistical estimators, estimands, or module readiness, and
+does not cover the new publication capability figures below.
+
+The separate [publication capability v1.2 candidate](docs/figures/publication_capability_guide.md)
+adds participant flowcharts, clone/event timelines, supplied-curve risk tables,
+outcome panels and hierarchical subgroup forests. See the
+[original synthetic gallery](figure_gallery/publication_capability/README.md)
+and [benchmark capability audit](reports/jar_tte_benchmark_capability_matrix.md).
+These nine synthetic scenes require separate researcher visual review:
+`publication_ready=FALSE`, `manual_review=PENDING`.
+`CCW VISUALIZATION != CCW PRODUCTION VALIDATION`: visualization support does not
+establish CCW production readiness. The production registry still permits only
+the two validated ATE profiles, `BASELINE_BINARY_RISK` and `MI_PS_CONTINUOUS_ATE`.
 
 ## Synthetic examples
 
@@ -156,6 +168,8 @@ The repository records seeds, configuration files, input hashes, package version
 ## Citation
 
 Use `CITATION.cff` for the stable-release metadata. The source repository is `https://github.com/secdelic/tte-method-library`. The immutable `v1.0.0` source is archived by Zenodo at the version-specific DOI [`10.5281/zenodo.21879884`](https://doi.org/10.5281/zenodo.21879884). Cite that DOI rather than the moving `main` branch. The all-versions concept DOI is `10.5281/zenodo.21879883`.
+
+The figure upgrades do not change the immutable `v1.0.0` tag or its Zenodo DOI.
 
 ## License
 
