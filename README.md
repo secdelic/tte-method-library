@@ -4,7 +4,9 @@ This repository is a statistical execution library for target trial emulation an
 
 The library executes researcher-specified target trial emulation and causal-inference analyses. Scientific study design, causal identification, database extraction and manuscript interpretation remain the responsibility of the investigators.
 
-Version: `1.0.0`
+Prepared version metadata: `1.2.0` (unreleased Release Candidate; human release approval pending).
+Published stable archive: `v1.0.0`.
+See [v1.2.0 candidate release notes](docs/releases/visualization-v1.2.0.md).
 Library status: `COMPLETE_METHOD_LIBRARY_WITH_MIXED_MODULE_READINESS`
 
 ## Scope
@@ -15,6 +17,10 @@ The software validates prepared analysis data and frozen analysis specifications
 
 The repository does not perform SQL generation, database connection or extraction, study-question definition, DAG construction, confounder selection, treatment/outcome/time-zero definition, automatic estimand selection, result-driven model selection, causal interpretation, clinical recommendations, manuscript writing, reviewer simulation, or submission decisions.
 
+## PUBLICATION VISUALIZATION CAPABILITY and PRODUCTION VALIDATED ESTIMATORS
+
+These are separate capability categories. Figure rendering accepts caller-supplied estimates; it does not establish a new statistical estimator.
+
 ## Current module readiness
 
 ### Production validated
@@ -24,7 +30,7 @@ The repository does not perform SQL generation, database connection or extractio
 
 ### Experimental or development scope
 
-CCW, LMTP, longitudinal TTE, PATH, three-timepoint TTE and multilevel propensity-score workflows retain their existing mixed-readiness classifications and are not production-approved in this RC1.
+CCW, LMTP, longitudinal TTE, PATH, three-timepoint TTE and multilevel propensity-score workflows retain their existing mixed-readiness classifications and are not production-approved in this visualization release scope.
 
 `AVAILABLE != PRODUCTION-APPROVED`
 
@@ -74,7 +80,7 @@ Outputs are written under `examples/quick_start/output/` and are excluded from G
 
 ## Input data
 
-Formal studies supply a prepared CSV under a private project location. The runtime expects one row per analysis unit for the two RC1 production profiles, unique `subject_id` and `analysis_id`, explicit ISO-8601 time fields, a binary treatment, a profile-compatible outcome and researcher-approved baseline confounders.
+Formal studies supply a prepared CSV under a private project location. The runtime expects one row per analysis unit for the two production profiles, unique `subject_id` and `analysis_id`, explicit ISO-8601 time fields, a binary treatment, a profile-compatible outcome and researcher-approved baseline confounders.
 
 The repository contains synthetic rows only. It contains no real patient data.
 
@@ -131,13 +137,16 @@ variants at both 85 mm and 178 mm. This style approval does not change the stabl
 software version, statistical estimators, estimands, or module readiness, and
 does not cover the new publication capability figures below.
 
-The separate [publication capability v1.2 candidate](docs/figures/publication_capability_guide.md)
+The merged [publication capability v1.2](docs/figures/publication_capability_guide.md)
 adds participant flowcharts, clone/event timelines, supplied-curve risk tables,
 outcome panels and hierarchical subgroup forests. See the
 [original synthetic gallery](figure_gallery/publication_capability/README.md)
 and [benchmark capability audit](reports/jar_tte_benchmark_capability_matrix.md).
-These nine synthetic scenes require separate researcher visual review:
-`publication_ready=FALSE`, `manual_review=PENDING`.
+The researcher approved the nine synthetic scenes at both widths for HEAD
+`bbbabc83afc290f7a885702dcd71c1327c88ff7d`; see the
+[gallery acceptance record](https://github.com/secdelic/tte-method-library/pull/3#issuecomment-6206656777).
+This is gallery-level acceptance. Export QC snapshots and every real-study figure
+retain their separate review gate; no blanket `publication_ready=TRUE` is granted.
 `CCW VISUALIZATION != CCW PRODUCTION VALIDATION`: visualization support does not
 establish CCW production readiness. The production registry still permits only
 the two validated ATE profiles, `BASELINE_BINARY_RISK` and `MI_PS_CONTINUOUS_ATE`.
@@ -151,7 +160,7 @@ Neither example uses a database, SQL, network-downloaded data or real patient in
 
 ## Validation
 
-The RC1 includes:
+Validation includes:
 
 - canonical-to-public numerical equivalence on identical synthetic inputs;
 - frozen public regression fixtures;
@@ -167,7 +176,7 @@ The repository records seeds, configuration files, input hashes, package version
 
 ## Citation
 
-Use `CITATION.cff` for the stable-release metadata. The source repository is `https://github.com/secdelic/tte-method-library`. The immutable `v1.0.0` source is archived by Zenodo at the version-specific DOI [`10.5281/zenodo.21879884`](https://doi.org/10.5281/zenodo.21879884). Cite that DOI rather than the moving `main` branch. The all-versions concept DOI is `10.5281/zenodo.21879883`.
+The proposed `CITATION.cff` describes unreleased v1.2.0 source; a new release date and version DOI are not yet assigned. For actual published use, retain the fixed v1.0.0 citation. The source repository is `https://github.com/secdelic/tte-method-library`. The immutable `v1.0.0` source is archived by Zenodo at the version-specific DOI [`10.5281/zenodo.21879884`](https://doi.org/10.5281/zenodo.21879884). Cite that DOI rather than the moving `main` branch. The all-versions concept DOI is `10.5281/zenodo.21879883`.
 
 The figure upgrades do not change the immutable `v1.0.0` tag or its Zenodo DOI.
 

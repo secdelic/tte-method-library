@@ -1,15 +1,13 @@
 cff-version: 1.2.0
-message: "Please cite the fixed software release. After Zenodo archival, prefer the version-specific DOI."
+message: "Unreleased v1.2.0 Release Candidate; no release date or version DOI is assigned. For the published v1.0.0 archive, use DOI 10.5281/zenodo.21879884. Do not attribute that DOI to v1.2.0."
 title: "Target Trial Emulation Statistical Analysis Method Library"
 type: software
 authors:
   - given-names: "xuankun"
     family-names: "zheng"
     orcid: "https://orcid.org/0009-0006-7036-7811"
-version: "1.0.0"
-date-released: "2026-08-11"
+version: "1.2.0"
 repository-code: "https://github.com/secdelic/tte-method-library"
-doi: "10.5281/zenodo.21879884"
 license: MIT
 keywords:
   - target trial emulation
