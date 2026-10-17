@@ -51,5 +51,5 @@ its assigned DOI `10.5281/zenodo.21879884` and date `2026-08-11`.
 Those identifiers belong to v1.0.0 and must not be assigned to v1.2.0.
 
 The historical tag, GitHub Release and Zenodo records are preserved. See the
-[archival plan](https://github.com/secdelic/tte-method-library/blob/release/visualization-v1.2.0-finalization/docs/releases/visualization-v1.2.0-archival-plan.md)
+[archival plan](https://github.com/secdelic/tte-method-library/blob/v1.2.0/docs/releases/visualization-v1.2.0-archival-plan.md)
 for the separate publication authorization and post-archive verification steps.
