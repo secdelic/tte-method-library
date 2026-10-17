@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "Unreleased v1.2.0 Release Candidate; no release date or version DOI is assigned. For the published v1.0.0 archive, use DOI 10.5281/zenodo.21879884. Do not attribute that DOI to v1.2.0."
+message: "If you use this software, please cite version 1.2.0 using the metadata in this file."
 title: "Target Trial Emulation Statistical Analysis Method Library"
 type: software
 authors:

@@ -1,13 +1,11 @@
-# Visualization v1.2.0 — unreleased Release Candidate
+# Visualization v1.2.0
 
-This candidate is not a published release or a Zenodo archive. Its version is
-1.2.0; no new release date or version DOI has been assigned. Formal publication
-requires a separate researcher decision on the final commit and release assets.
+Version 1.2.0 of the Target Trial Emulation Statistical Analysis Method Library provides publication visualization with fourteen native figure variants and six publication APIs. Production-validated estimation remains limited to BASELINE_BINARY_RISK and MI_PS_CONTINUOUS_ATE (ATE); CCW visualization does not establish CCW statistical production validation.
 
 ## Visualization source and capabilities
 
 The visualization source is frozen at
-`f35e4ea00031cee0dfd1b5b6045fa39d5479f8f9`. This candidate changes release
+`f35e4ea00031cee0dfd1b5b6045fa39d5479f8f9`. Release preparation changes
 metadata and its version-aware validator, not visualization or statistical code.
 The SCI semantic palette and publication theme, fourteen native figure variants,
 six publication APIs, nine synthetic scenes and existing figure QC are retained.
@@ -43,7 +41,6 @@ individual QC and human review; no blanket `publication_ready=TRUE` is granted.
 
 `cff-version: 1.2.0` denotes the Citation File Format schema. The separate
 software version is 1.2.0 in VERSION, DESCRIPTION, CITATION.cff and .zenodo.json.
-The candidate has no canonical DOI, release date or archived/published status.
 Authors, ORCID, MIT license, software title and repository identity are preserved.
 
 The immutable v1.0.0 tag points to
@@ -51,7 +48,8 @@ The immutable v1.0.0 tag points to
 addition in commit `01c49c1`. The validator accepts that exact five-file snapshot
 by fixed SHA256 (CRLF normalized to LF), or the historical v1.0.0 identity with
 its assigned DOI `10.5281/zenodo.21879884` and date `2026-08-11`.
-Those identifiers belong to v1.0.0 and must not be assigned to this candidate.
+Those identifiers belong to v1.0.0 and must not be assigned to v1.2.0.
 
-The historical tag, GitHub Release and Zenodo records are not changed. No new
-tag, GitHub Release or Zenodo record is created by candidate validation.
+The historical tag, GitHub Release and Zenodo records are preserved. See the
+[archival plan](https://github.com/secdelic/tte-method-library/blob/v1.2.0/docs/releases/visualization-v1.2.0-archival-plan.md)
+for the separate publication authorization and post-archive verification steps.

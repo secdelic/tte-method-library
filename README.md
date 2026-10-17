@@ -4,9 +4,8 @@ This repository is a statistical execution library for target trial emulation an
 
 The library executes researcher-specified target trial emulation and causal-inference analyses. Scientific study design, causal identification, database extraction and manuscript interpretation remain the responsibility of the investigators.
 
-Prepared version metadata: `1.2.0` (unreleased Release Candidate; human release approval pending).
-Published stable archive: `v1.0.0`.
-See [v1.2.0 candidate release notes](docs/releases/visualization-v1.2.0.md).
+Current software version: `1.2.0`. Verify release and archive status from the immutable Git tag, GitHub Release and corresponding Zenodo record. The previous `v1.0.0` archive remains preserved.
+See [v1.2.0 release notes](docs/releases/visualization-v1.2.0.md) and the [archival plan](docs/releases/visualization-v1.2.0-archival-plan.md).
 Library status: `COMPLETE_METHOD_LIBRARY_WITH_MIXED_MODULE_READINESS`
 
 ## Scope

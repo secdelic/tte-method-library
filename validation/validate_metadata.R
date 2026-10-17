@@ -1,4 +1,4 @@
-# Published v1.0.0 identity and unreleased v1.2.0 are separate contracts.
+# Historical identity, unreleased RC and archival-ready source are separate contracts.
 # cff-version describes the citation format, never the software version.
 validate_metadata <- function(root = ".") {
   root <- normalizePath(root, winslash = "/", mustWork = TRUE)
@@ -90,9 +90,39 @@ validate_metadata <- function(root = ".") {
     check(!length(setdiff(names(cff), cff_fields)), "candidate CFF contains publication or unsupported fields")
     check(!length(setdiff(names(zenodo), zenodo_fields)), "candidate Zenodo contains publication or unsupported fields")
     check(!any(c("Date", "Date/Publication") %in% names(description)), "candidate DESCRIPTION release date")
-    check(startsWith(cff$message, "Unreleased v1.2.0 Release Candidate;") &&
-            startsWith(zenodo$description, "Unreleased v1.2.0 Release Candidate."), "candidate must be explicitly unreleased")
-    state <- "UNRELEASED_V1_2_0_CANDIDATE"
+    release_status <- description$`Release-Status`
+    if (is.null(release_status)) release_status <- "UNRELEASED_RC"
+    check(release_status %in% c("UNRELEASED_RC", "RELEASE_READY_FOR_ARCHIVAL"),
+          "unsupported release status; an archived identity requires separate evidence-bound maintenance")
+    if (identical(release_status, "UNRELEASED_RC")) {
+      check(startsWith(cff$message, "Unreleased v1.2.0 Release Candidate;") &&
+              startsWith(zenodo$description, "Unreleased v1.2.0 Release Candidate."), "candidate must be explicitly unreleased")
+      state <- "UNRELEASED_V1_2_0_CANDIDATE"
+    } else {
+      # No invented DOI or release date: the existing field restrictions also
+      # apply to source awaiting archival. Zenodo resolves the actual date;
+      # its date and generated identifiers are verified after publication.
+      release_description <- paste(
+        "Version 1.2.0 of the Target Trial Emulation Statistical Analysis Method Library",
+        "provides publication visualization with fourteen native figure variants and six publication APIs.",
+        "Production-validated estimation remains limited to BASELINE_BINARY_RISK and MI_PS_CONTINUOUS_ATE",
+        "(ATE); CCW visualization does not establish CCW statistical production validation."
+      )
+      check(!any(grepl("unreleased|release candidate", c(cff$message, cff$abstract,
+                    zenodo$description, description$Description), ignore.case = TRUE)),
+            "archival-ready metadata contains RC wording")
+      check(identical(cff$message, "If you use this software, please cite version 1.2.0 using the metadata in this file."),
+            "archival-ready citation message")
+      check(identical(zenodo$description, release_description), "archival-ready software description")
+      notes_file <- file.path(root, "docs", "releases", "visualization-v1.2.0.md")
+      check(file.exists(notes_file), "archival-ready release notes required")
+      notes <- readLines(notes_file, warn = FALSE, encoding = "UTF-8")
+      check(length(notes) >= 3L && identical(notes[1], "# Visualization v1.2.0") &&
+              identical(notes[3], release_description) &&
+              !any(grepl("unreleased|release candidate", notes, ignore.case = TRUE)),
+            "release notes must match archival-ready metadata and proposed GitHub Release body")
+      state <- "RELEASE_READY_FOR_ARCHIVAL"
+    }
   }
   message("PUBLIC_METADATA_VALIDATION=PASS; version=", version, "; state=", state)
   invisible(state)

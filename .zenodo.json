@@ -6,7 +6,7 @@
       "orcid": "0009-0006-7036-7811"
     }
   ],
-  "description": "Unreleased v1.2.0 Release Candidate. A statistical execution library for researcher-specified target trial emulation and related causal-inference analyses.",
+  "description": "Version 1.2.0 of the Target Trial Emulation Statistical Analysis Method Library provides publication visualization with fourteen native figure variants and six publication APIs. Production-validated estimation remains limited to BASELINE_BINARY_RISK and MI_PS_CONTINUOUS_ATE (ATE); CCW visualization does not establish CCW statistical production validation.",
   "keywords": [
     "target trial emulation",
     "causal inference",
