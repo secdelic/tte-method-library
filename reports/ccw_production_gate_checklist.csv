@@ -1,0 +1,19 @@
+gate_id,gate,required_evidence,acceptance_rule,current_status,current_evidence,decision_owner
+G01,Scientific Authority human freeze,"完整 scientific decisions、validation参数和批准版本记录","所有适用关键字段解决且人工冻结；不能仅翻转 boolean",PENDING,"governance/CCW_SCIENTIFIC_AUTHORITY_V1.yml 为未冻结草案",Human scientific authority
+G02,Input unit and temporal contracts,"ID/period/事件/时序/未来信息/多units的接受与拒绝案例","按冻结定义通过；无静默删行/重编码/时间平移",NOT_RUN,"仅 docs/ccw/ccw_input_contract.md 设计",Engineering and statistical review
+G03,Implementation unit tests,"每个获准 CCW 模块的实现测试和错误路径","unit tests PASS；断言科学契约而非仅文件存在",NOT_RUN,"本轮未实现 CCW",Engineering review
+G04,Edge-case hand oracle,"逐 clone/period/probability/weight/risk-set/event/contrast 人工独立表","所有离散状态精确一致；连续量满足预先冻结容差",NOT_RUN,"oracle设计在验证协议；无已运行结果",Independent statistical review
+G05,Independent comparator,"不调用待测helper的weighted KM/CIF/contrasts/integration/IPCW/variance证据","匹配批准方法和适用域的比较全部PASS",NOT_RUN,"docs/ccw/ccw_independent_comparator_plan.md 为候选方案",Independent statistical review
+G06,Known-truth point-estimate gates,"各预设场景bias/relative bias/RMSE及MC uncertainty","满足预先冻结场景门；null不使用relative bias",NOT_RUN,"DGP参数/真值/重复数/门限未冻结",Independent statistical review
+G07,Variance and CI calibration,"mean SE vs empirical SD、95%coverage、tails、failure率及MC uncertainty","每个适用场景和效应通过冻结门；不能仅平均coverage达标",NOT_RUN,"无CCW数值结果；历史RMST风险未解决",Independent statistical review
+G08,Subject-level full-refit bootstrap,"original subject所有units/clones的抽样映射与必要模型重拟合记录","保留联合依赖；attempt/valid/failed明确；不以fixed-weight替代",NOT_RUN,"只有任务约束和计划",Independent statistical review
+G09,Competing-risk gates,"原因编码、risk sets、全部CIF、event-free survival、积分与CI","不将竞争事件普通删失后的1-KM当CIF；冻结独立验证PASS",NOT_RUN,"无CIF estimator或numerical evidence",Independent statistical review
+G10,Reproducibility,"输入/规范/代码/环境/seeds及重跑或并行对照","抽样身份一致；统计输出满足冻结容差；失败可复现",NOT_RUN,"本轮仅文档检查；不作为CCW可复现证据",Engineering and statistical review
+G11,Sensitivity tests,"全部预设grace/truncation/missingness等方案的完整执行","预设顺序和定义不因结果改变；每个方案的独立验证PASS",NOT_RUN,"具体scenario列表未获批准",Human scientific authority
+G12,Missing-data with CCW,"时序、变量角色、m、每插补CCW、pooling及批准的MI-bootstrap nesting","所声称missing-data scope独立验证PASS；无最佳插补选择",NOT_RUN,"PMM+PS continuous ATE证据不迁移",Independent statistical review
+G13,Subgroup and interaction,"成员资格、subgroup refit、批准interaction对比及联合推断","通过冻结numerical/coverage门；未批准interaction不得声称已验证",NOT_RUN,"无subgroup CCW执行",Human scientific authority
+G14,Actual result to figure binding,"计算对象到合法aggregate表与publication APIs的数值/单位验证","无fixture替代；counts与weighted mass分离；图表人审单独记录",NOT_RUN,"既有图形测试不是统计结果绑定测试",Engineering and human figure review
+G15,Project-specific canary,"已批准项目analysis-ready输入和端到端统计/诊断核验","project-specific canary PASS；合成测试不能替代",NOT_RUN,"本轮无真实项目输入和方案",Human scientific authority
+G16,Independent statistical review,"独立审阅人对规范/实现/数值/推断/适用域的真实记录","对指定候选版本明确PASS；自审不能声称独立人审",PENDING,"未发生独立统计审阅",Independent statistical reviewer
+G17,Human scientific approval,"指定版本与明确生产scope的人工批准记录","明确批准且全部必需门通过；不自动修改registry",PENDING,"本轮无scientific approval",Human scientific authority
+G18,RMST and RMTL restricted scope,"点估计与CI分开验证；历史小样本RMST风险的复核记录","未通过的RMST CI不得入allowlist；缩小scope须人工批准且不能声称全parity",NOT_RUN,"历史风险为用户报告；原始失败记录UNKNOWN",Independent statistical review and human authority

@@ -1,0 +1,228 @@
+# 待审核的 CCW 方法验证 authority；不是 analysis_spec，也不能传入当前 runtime。
+schema_version: "1.0"
+authority_id: "CCW_SCIENTIFIC_AUTHORITY_V1"
+date: "2026-10-15"
+status: "CCW_SCIENTIFIC_AUTHORITY_AWAITING_HUMAN_APPROVAL"
+scientific_fields_frozen: false
+implementation_authorized: false
+production_authorized: false
+scope: "通用 CCW 统计方法验证项目；具体验证 profile 和真实项目均尚未冻结"
+benchmark:
+  doi: "10.1016/j.jare.2026.08.009"
+  evidence_scope: "研究者提供的九页 corrected-proof 主文，方法见 pp. 2-3、Fig. 2 见 p. 4"
+  supplemental_data_1: "UNKNOWN"
+  supplemental_data_2: "UNKNOWN"
+  adoption_of_benchmark_clinical_definitions: false
+  method_capability_status: "CCW_METHOD_CAPABILITY_PARITY_NOT_ESTABLISHED"
+
+# 下列约束直接来自本次任务，不代表研究方案或统计方法已获批准。
+task_constraints:
+  analysis_ready_inputs_only: true
+  database_connection_allowed: false
+  sql_generation_allowed: false
+  result_dependent_specification_changes_allowed: false
+  clone_independence_assumption_allowed: false
+  bootstrap_resampling_unit: "original_subject"
+  bootstrap_preserve_all_related_analysis_units_and_clones: true
+  bootstrap_refit_all_required_models: true
+  fixed_weight_bootstrap_equivalence_claim_allowed: false
+  competing_event_as_ordinary_censoring_for_cause_specific_cif_allowed: false
+  production_registry_update_allowed_in_this_stage: false
+  automatic_merge_or_release_allowed: false
+
+# 每个 values 叶节点均需显式填写；不能把空列表、null、false 或软件默认值当作科学决定。
+# 不适用的字段也须人工记录 NOT_APPLICABLE、理由和适用范围；不能跳过关键决策。
+scientific_decisions:
+  analysis_unit_and_cluster:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      analysis_unit_definition: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      original_subject_cluster_column: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      analysis_unit_identifier: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      multiple_units_per_subject_and_target_population_weighting: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  eligibility_and_time_zero:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      population_and_eligibility: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      eligibility_information_cutoff: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      time_zero_definition_and_alignment: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      prebaseline_outcomes_and_treatment_policy: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  intervention_strategies:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      strategy_ids_and_definitions: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      initiation_dose_duration_reinitiation_rules: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      within_grace_initiation_policy_and_identification: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  strategy_adherence_rules:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      compatibility_by_strategy_and_interval: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      adherence_after_grace_and_terminal_event_policy: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  grace_period_inclusivity:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      start_end_units: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      open_closed_endpoints_and_exact_boundary_action: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  interval_length:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      length_unit_grid_origin: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      partial_intervals_time_precision_and_rounding: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  treatment_event_ties:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      ordering_of_measurement_treatment_censoring_and_events: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      simultaneous_outcome_and_competing_event: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      interval_entry_exit_and_grace_boundary_priority: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  artificial_censoring:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      rule_by_strategy_and_assessment_time: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      within_interval_event_contribution: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  natural_censoring:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      loss_discharge_and_administrative_end: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      independent_censoring_assumptions_and_weighting: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  competing_events:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      causes_codes_and_absorbing_states: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      outcome_specific_handling: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  outcome_horizons:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      endpoint_definitions_and_horizons: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      horizon_support_and_nonestimable_policy: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  per_protocol_estimands:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      target_population_and_intervention_distribution: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      identification_assumptions: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      effect_measures_reference_strategy_and_contrast_direction: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      ratio_zero_denominator_policy: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  baseline_covariates:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      approved_variables_roles_units_coding_and_dag: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  time_varying_covariates:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      approved_history_variables_and_lags: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      treatment_affected_variables_and_update_rules: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  measurement_availability_time:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      measurement_and_available_time_mapping: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      permitted_information_at_each_decision: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      carry_forward_staleness_and_aggregation: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  ipcw_numerator_denominator_models:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      censoring_target_risk_set_and_probability_orientation: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      denominator_formula_link_time_basis_and_stratification: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      numerator_formula_or_explicit_absence: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      product_limits_weight_evaluation_time_and_postgrace_rules: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      convergence_separation_and_unseen_levels_policy: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  stabilization:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      enabled_and_numerator_conditioning: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      normalization_and_target_population_implications: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  truncation_rules:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      enabled_thresholds_and_absolute_or_quantile: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      domain_time_strategy_imputation_and_quantile_algorithm: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      estimation_and_application_order: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  missing_data:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      mechanism_assumptions_and_strategy_by_variable: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      imputation_timing_relative_to_eligibility_cloning_and_bootstrap: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      predictor_matrix_methods_and_event_time_roles: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      number_iterations_seeds_and_convergence: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      within_imputation_analysis_and_pooling_scale_order: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      bootstrap_mi_nesting_and_failure_rules: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  weighted_survival_cif:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      estimators_risk_sets_and_weight_timing: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      event_free_vs_all_cause_survival_and_cif_state: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      step_convention_and_unsupported_horizon_handling: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  rmst_rmtl:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      selected_curves_horizons_time_units_and_integration: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      all_event_time_lost_vs_cause_specific_cif_area: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      requested_point_estimate_and_interval_scope: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  variance_method:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      method_by_endpoint_and_effect_measure: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      clone_and_repeated_unit_dependence: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      interval_type_scale_and_joint_contrast_covariance: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      pointwise_vs_simultaneous_inference: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  bootstrap_resampling_unit:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      original_subject_column_and_all_related_units: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      subject_sampling_design_strata_and_multiplicity: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    binding_constraint: "必须按 original subject 抽样；同一抽样副本保留该 subject 的全部 analysis units 和 clones"
+  bootstrap_refit_rules:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      full_pipeline_refit_stages_including_imputation_if_applicable: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      requested_attempts_valid_count_and_prespecified_retry_policy: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      rng_seed_streams_and_failure_reporting: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    binding_constraint: "禁止 fixed-weight bootstrap 等价声明；所有失败和不可估计重复必须保留记录"
+  subgroup_interaction:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      subgroup_definitions_timing_and_membership: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      refit_scope_interaction_estimand_scale_and_inference: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      multiplicity_and_sparse_subgroup_policy: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  sensitivity_analyses:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      prespecified_grace_periods: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      prespecified_truncation_scenarios: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      complete_case_or_other_missing_data_scenarios: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      refit_scope_and_reporting_order: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  diagnostics_and_figure_binding:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      positivity_ess_extreme_weight_and_balance_gates: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      balance_target_reference_denominator_and_time_grid: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      number_at_risk_unit_and_time_convention: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      approved_aggregate_output_disclosure: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  validation_program:
+    status: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+    values:
+      synthetic_profile_scope_and_data_generating_parameters: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      independent_truth_values_and_truth_uncertainty: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      sample_sizes_cluster_structure_seeds_and_replications: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      numerical_tolerances_and_monte_carlo_precision: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      bias_coverage_tail_failure_and_supported_domain_thresholds: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+      comparator_eligibility_and_versions: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+
+preexisting_validation_risk:
+  topic: "CCW 小样本 RMST 区间校准未全面通过"
+  source: "研究者在本次任务中明确报告"
+  independently_verified_failure_artifact: "UNKNOWN"
+  failure_scenarios_and_rates: "UNKNOWN"
+  required_action: "冻结前检索或由研究者提供原始记录；纳入预设验证，不据结果调整门限；未通过的 RMST CI 不得进入 production allowlist"
+
+approval:
+  reviewer_identity: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  decision: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  approved_scope_and_exclusions: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  approved_authority_content_sha256: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  approved_validation_plan_sha256: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  decision_date: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+  evidence_reference: "HUMAN_SCIENTIFIC_DECISION_REQUIRED"
+
+handoff:
+  required_before_implementation: "逐项解决上述字段；冻结 authority 和验证计划；取得对应版本的明确人工批准"
+  current_stage_complete_does_not_grant_scientific_approval: true
+  stop_state: "CCW_SCIENTIFIC_AUTHORITY_AWAITING_HUMAN_APPROVAL"
