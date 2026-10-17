@@ -6,7 +6,7 @@
       "orcid": "0009-0006-7036-7811"
     }
   ],
-  "description": "A statistical execution library for researcher-specified target trial emulation and related causal-inference analyses.",
+  "description": "Unreleased v1.2.0 Release Candidate. A statistical execution library for researcher-specified target trial emulation and related causal-inference analyses.",
   "keywords": [
     "target trial emulation",
     "causal inference",
@@ -16,8 +16,7 @@
     "R"
   ],
   "license": "MIT",
-  "version": "1.0.0",
-  "publication_date": "2026-08-11",
+  "version": "1.2.0",
   "upload_type": "software",
   "related_identifiers": [
     {

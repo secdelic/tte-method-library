@@ -1,0 +1,30 @@
+{
+  "title": "Target Trial Emulation Statistical Analysis Method Library",
+  "creators": [
+    {
+      "name": "zheng, xuankun",
+      "orcid": "0009-0006-7036-7811"
+    }
+  ],
+  "description": "A statistical execution library for researcher-specified target trial emulation and related causal-inference analyses.",
+  "keywords": [
+    "target trial emulation",
+    "causal inference",
+    "propensity-score weighting",
+    "multiple imputation",
+    "reproducible statistical analysis",
+    "R"
+  ],
+  "license": "MIT",
+  "version": "1.0.0",
+  "publication_date": "2026-08-11",
+  "upload_type": "software",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/secdelic/tte-method-library",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
+    }
+  ]
+}
