@@ -2,6 +2,7 @@ Package: tteMethodLibrary
 Type: Project
 Title: Target Trial Emulation Statistical Analysis Method Library
 Version: 1.2.0
+Release-Status: RELEASE_READY_FOR_ARCHIVAL
 Authors@R: person("xuankun", "zheng", role = c("aut", "cre"))
 Description: A statistical execution library for researcher-specified target
     trial emulation and related causal-inference analyses. The repository is a

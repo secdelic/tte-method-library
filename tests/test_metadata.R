@@ -86,4 +86,59 @@ expect_fail("candidate marked published", function(p) edit_zenodo(p, function(x)
 expect_fail("candidate marked archived", function(p) edit_zenodo(p, function(x) { x$submitted <- TRUE; x }), "candidate Zenodo")
 expect_fail("candidate publication claim", function(p) edit_cff(p, function(x) { x$message <- "Published v1.2.0 Release"; x }), "explicitly unreleased")
 expect_fail("unsupported software version", function(p) writeLines("9.9.9", file.path(p, "VERSION")), "unsupported software version")
+
+# Keep the 30 historical/RC cases above. The archival-ready fixtures have no
+# allocated DOI or date and do not represent an already published archive.
+ready_message <- "If you use this software, please cite version 1.2.0 using the metadata in this file."
+ready_description <- paste(
+  "Version 1.2.0 of the Target Trial Emulation Statistical Analysis Method Library",
+  "provides publication visualization with fourteen native figure variants and six publication APIs.",
+  "Production-validated estimation remains limited to BASELINE_BINARY_RISK and MI_PS_CONTINUOUS_ATE",
+  "(ATE); CCW visualization does not establish CCW statistical production validation."
+)
+make_ready_case <- function() {
+  p <- make_case(TRUE)
+  cat("Release-Status: RELEASE_READY_FOR_ARCHIVAL\n", file = file.path(p, "DESCRIPTION"), append = TRUE)
+  edit_cff(p, function(x) { x$message <- ready_message; x })
+  edit_zenodo(p, function(x) { x$description <- ready_description; x })
+  dir.create(file.path(p, "docs", "releases"), recursive = TRUE)
+  writeLines(c("# Visualization v1.2.0", "", ready_description),
+             file.path(p, "docs", "releases", "visualization-v1.2.0.md"))
+  p
+}
+expect_ready_fail <- function(label, mutate, error) {
+  p <- make_ready_case()
+  mutate(p)
+  result <- tryCatch(validate_metadata(p), error = function(e) e)
+  stopifnot(inherits(result, "error"), grepl(error, conditionMessage(result), fixed = TRUE))
+  passed <<- passed + 1L
+  message("METADATA_CASE=PASS; rejected ", label, "; ", conditionMessage(result))
+}
+expect_pass("v1.2.0 ready for archival, no allocated date or DOI", make_ready_case(), "RELEASE_READY_FOR_ARCHIVAL")
+expect_fail("RC fields relabeled archival-ready", function(p) {
+  cat("Release-Status: RELEASE_READY_FOR_ARCHIVAL\n", file = file.path(p, "DESCRIPTION"), append = TRUE)
+}, "archival-ready metadata contains RC wording")
+expect_ready_fail("ready CFF still Unreleased", function(p) edit_cff(p, function(x) { x$message <- "Unreleased v1.2.0 Release Candidate;"; x }), "RC wording")
+expect_ready_fail("ready Zenodo still Unreleased", function(p) edit_zenodo(p, function(x) { x$description <- paste("Unreleased", x$description); x }), "RC wording")
+expect_ready_fail("ready CFF abstract still RC", function(p) edit_cff(p, function(x) { x$abstract <- "Release Candidate"; x }), "RC wording")
+expect_ready_fail("ready DESCRIPTION still RC", function(p) edit_description(p, "Description", "Unreleased Release Candidate"), "RC wording")
+expect_ready_fail("ready old CFF DOI", function(p) edit_cff(p, function(x) { x$doi <- "10.5281/zenodo.21879884"; x }), "candidate CFF")
+expect_ready_fail("ready old Zenodo DOI", function(p) edit_zenodo(p, function(x) { x$doi <- "10.5281/zenodo.21879884"; x }), "candidate Zenodo")
+expect_ready_fail("unallocated DOI in CFF", function(p) edit_cff(p, function(x) { x$doi <- "10.5281/zenodo.999999999"; x }), "candidate CFF")
+expect_ready_fail("unallocated DOI in Zenodo", function(p) edit_zenodo(p, function(x) { x$doi <- "10.5281/zenodo.999999999"; x }), "candidate Zenodo")
+expect_ready_fail("ready old CFF date", function(p) edit_cff(p, function(x) { x$`date-released` <- "2026-08-11"; x }), "candidate CFF")
+expect_ready_fail("ready old Zenodo date", function(p) edit_zenodo(p, function(x) { x$publication_date <- "2026-08-11"; x }), "candidate Zenodo")
+expect_ready_fail("ready DESCRIPTION date", function(p) cat("Date: 2026-08-11\n", file = file.path(p, "DESCRIPTION"), append = TRUE), "DESCRIPTION release date")
+expect_ready_fail("ready inconsistent software version", function(p) edit_zenodo(p, function(x) { x$version <- "1.0.0"; x }), "software versions disagree")
+expect_ready_fail("ready missing author", function(p) edit_cff(p, function(x) { x$authors <- NULL; x }), "missing authors")
+expect_ready_fail("ready changed license", function(p) edit_zenodo(p, function(x) { x$license <- "SYN_TEST"; x }), "MIT license identity")
+expect_ready_fail("ready changed repository", function(p) edit_cff(p, function(x) { x$`repository-code` <- "SYN_TEST"; x }), "CFF repository identity")
+expect_ready_fail("ready false archive state", function(p) edit_description(p, "Release-Status", "ARCHIVED"), "unsupported release status")
+expect_ready_fail("ready submitted flag", function(p) edit_zenodo(p, function(x) { x$submitted <- TRUE; x }), "candidate Zenodo")
+expect_ready_fail("ready missing state marker", function(p) edit_description(p, "Release-Status", NULL), "explicitly unreleased")
+expect_ready_fail("ready misleading citation message", function(p) edit_cff(p, function(x) { x$message <- "Cite v1.0.0 DOI for v1.2.0"; x }), "archival-ready citation message")
+expect_ready_fail("ready unsupported production claim", function(p) edit_zenodo(p, function(x) { x$description <- paste(x$description, "CCW estimator is production validated."); x }), "archival-ready software description")
+expect_ready_fail("ready missing release notes", function(p) unlink(file.path(p, "docs", "releases", "visualization-v1.2.0.md")), "release notes required")
+expect_ready_fail("ready mismatched release notes", function(p) writeLines(c("# Visualization v1.2.0", "", "SYN_TEST mismatch"), file.path(p, "docs", "releases", "visualization-v1.2.0.md")), "release notes must match")
+expect_ready_fail("ready RC release notes", function(p) cat("Unreleased Release Candidate\n", file = file.path(p, "docs", "releases", "visualization-v1.2.0.md"), append = TRUE), "release notes must match")
 message("METADATA_CONTRACT_TESTS=PASS; cases=", passed)

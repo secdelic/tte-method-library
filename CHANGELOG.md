@@ -1,11 +1,11 @@
 # Changelog
 
-## 1.2.0 — unreleased Release Candidate
+## 1.2.0
 
 - Freeze visualization source at f35e4ea00031cee0dfd1b5b6045fa39d5479f8f9.
 - Include the merged SCI palette/theme, 14 native variants and six publication APIs across nine synthetic scenes.
 - Preserve the two validated ATE profiles; no CCW production estimator or statistical authority is added.
-- Keep v1.0.0 and its version DOI immutable; v1.2.0 release validation and human release approval remain pending.
+- Keep v1.0.0 and its version DOI immutable; separate archival-ready metadata from actual publication.
 
 ## 1.0.0
 
