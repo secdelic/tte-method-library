@@ -1,0 +1,38 @@
+{
+  "report_enabled": false,
+  "report_format": "docx",
+  "report_template": "methods_results_next_steps",
+  "data_classification": "SYNTHETIC_CONFIRMED",
+  "title": "Synthetic continuous outcome analysis report",
+  "language": "en",
+  "study": {
+    "design": "Synthetic baseline treatment comparison with a continuous outcome.",
+    "population": "600 synthetic analysis units in the existing multiple-imputation example.",
+    "time": "Common baseline treatment assignment and the example's fixed outcome horizon.",
+    "exposure": "Synthetic treatment 1 at baseline.",
+    "comparator": "Synthetic treatment 0 at baseline.",
+    "outcome": "The example's continuous outcome, expressed in its original units.",
+    "models": "Within-imputation propensity weighting with WeightIt M-estimation, followed by Rubin pooling.",
+    "adjustment": "The prespecified covariates x and z.",
+    "missing": "The existing example uses predictive mean matching across 10 imputations. This report reads the saved pooled aggregate and performs no imputation or model fitting.",
+    "uncertainty": "The supplied standard error and 95% interval use the example's within-imputation M-estimation and Rubin pooling procedure."
+  },
+  "methods": [],
+  "results": [
+    {
+      "type": "effects",
+      "path": "../../validation/fixtures/mi_effects.csv",
+      "caption": "Table 1. Saved synthetic mean difference",
+      "note": "The estimate is a mean difference in original outcome units. These synthetic fixture results are not clinical evidence.",
+      "decimals": 4,
+      "column_widths": [0.8, 1.8, 1.0, 0.9, 2.2],
+      "interval_label": "95% interval"
+    }
+  ],
+  "next_steps": [
+    {
+      "type": "paragraph",
+      "text": "Review the study definitions and supplied results before adapting the report configuration to another analysis."
+    }
+  ]
+}
