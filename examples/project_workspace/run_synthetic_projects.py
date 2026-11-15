@@ -6,6 +6,7 @@ Word remains off unless --enable-word is supplied with the optional adapter.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 from pathlib import Path
 import shutil
@@ -13,7 +14,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from runtime.project_workspace import CONFIG_FILES, Workspace, WorkspaceError, write_json
+from runtime.project_workspace import CONFIG_FILES, Workspace, WorkspaceError, digest, write_json
 
 
 def main():
@@ -36,6 +37,20 @@ def main():
             shutil.copyfile(ROOT / "examples" / fixture / "config" / name, project / "config" / name)
         shutil.copyfile(ROOT / "examples" / fixture / "input/private/analysis_data.csv",
                         project / "input/private/analysis_data.csv")
+        # Git checkouts may use LF or CRLF. Bind this new synthetic project's
+        # manifest to its actual copied bytes, without modifying source fixtures
+        # or weakening hash validation for researcher-prepared inputs.
+        contract = project / "config/input_data_contract.csv"
+        with contract.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            fields, rows = reader.fieldnames, list(reader)
+        for row in rows:
+            if row["relative_path"] == "input/private/analysis_data.csv":
+                row["sha256"] = digest(project / "input/private/analysis_data.csv")
+        with contract.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(rows)
         config = {
             "report_enabled": False, "data_classification": "SYNTHETIC_CONFIRMED",
             "title": "Synthetic analysis report", "language": "en",

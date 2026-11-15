@@ -6,6 +6,8 @@ The new project entry anchors every study to the actual Git checkout containing
 the entry script. Python 3.11 or later and the existing R environment are needed.
 The statistical path uses only the Python standard library; Word is optional.
 Shell working directories do not determine project or result locations.
+R starts in the library checkout to load its installed locked environment,
+then enters the project before executing the analysis.
 
 ## Initialize and execute a study
 
@@ -151,6 +153,8 @@ aggregate source. If the optional adapter is later present in this checkout,
 ## Runnable synthetic demonstration and tests
 
 This demonstration copies only the existing public synthetic fixtures. It
+binds the new project's input-manifest hash to the copied bytes (Git may check
+out CSVs with LF or CRLF), leaving the source fixtures and values unchanged. It
 creates `SYNTHETIC_BINARY` and `SYNTHETIC_CONTINUOUS`, executes both approved
 profiles, and gives the binary project two runs. It refuses pre-existing demo
 projects instead of replacing files. Word remains off by default:

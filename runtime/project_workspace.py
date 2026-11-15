@@ -245,7 +245,9 @@ class Workspace:
                 environment = os.environ.copy()
                 environment["R_PROFILE_USER"] = str(self.root / ".Rprofile")
                 with (run / "internal/runtime.log").open("xb") as log:
-                    result = subprocess.run(command, cwd=project, env=environment, stdout=log, stderr=log)
+                    # Repository startup activates its installed renv library;
+                    # the R bridge then enters the project before analysis.
+                    result = subprocess.run(command, cwd=self.root, env=environment, stdout=log, stderr=log)
                 if result.returncode:
                     raise WorkspaceError("Statistical runtime failed; inspect this run's private internal/runtime.log")
                 for name, expected in inputs.items():

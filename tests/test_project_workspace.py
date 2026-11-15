@@ -46,6 +46,19 @@ def prepare(workspace, project_id, fixture):
         shutil.copyfile(workspace.root / "examples" / fixture / "config" / name, project / "config" / name)
     shutil.copyfile(workspace.root / "examples" / fixture / "input/private/analysis_data.csv",
                     project / "input/private/analysis_data.csv")
+    # Synthetic source contracts predate checkout-independent byte bindings.
+    # Keep the source fixture intact and bind the new project's actual copy.
+    contract = project / "config/input_data_contract.csv"
+    with contract.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        fields, rows = reader.fieldnames, list(reader)
+    for row in rows:
+        if row["relative_path"] == "input/private/analysis_data.csv":
+            row["sha256"] = digest(project / "input/private/analysis_data.csv")
+    with contract.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
     return project
 
 
@@ -158,6 +171,24 @@ class SyntheticExecutions(unittest.TestCase):
         cls.addClassCleanup(cls.temporary.cleanup)
         cls.root = Path(cls.temporary.name)
         repository_copy(cls.root, full=True)
+        # Exercise Linux checkout bytes even when these tests run on Windows.
+        # Only temporary copies of the existing synthetic CSVs are normalized.
+        for fixture in ("quick_start", "mi_ps"):
+            copied = cls.root / "examples" / fixture / "input/private/analysis_data.csv"
+            copied.write_bytes(copied.read_bytes().replace(b"\r\n", b"\n"))
+        # The isolated test checkout contains code and fixtures, not a second
+        # installed renv library. Reuse the actual caller's restored R libraries.
+        libraries = cls.root / "r_libraries.txt"
+        subprocess.run(["Rscript", "-e", "writeLines(.libPaths(), commandArgs(TRUE)[1])", str(libraries)],
+                       cwd=ROOT, check=True, capture_output=True)
+        previous = os.environ.get("R_LIBS")
+        def restore_libraries():
+            if previous is None:
+                os.environ.pop("R_LIBS", None)
+            else:
+                os.environ["R_LIBS"] = previous
+        cls.addClassCleanup(restore_libraries)
+        os.environ["R_LIBS"] = os.pathsep.join(libraries.read_text().splitlines())
         cls.workspace = Workspace(cls.root)
         cls.binary = prepare(cls.workspace, "SYNTHETIC_BINARY", "quick_start")
         cls.continuous = prepare(cls.workspace, "SYNTHETIC_CONTINUOUS", "mi_ps")

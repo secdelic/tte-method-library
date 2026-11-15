@@ -5,6 +5,7 @@ repository <- normalizePath(args[[1]], winslash = "/", mustWork = TRUE)
 project <- normalizePath(args[[2]], winslash = "/", mustWork = TRUE)
 source(file.path(repository, "runtime", "load_library.R"))
 tte_source_library(repository)
+setwd(project)
 
 # In the legacy API project_root locates only the Registry; data/config/output
 # paths are independent. Bind the project root while resolving that one read
