@@ -1,4 +1,6 @@
 /input/private/**
+/project/
+/.reporting-dependency/
 /output/**
 **/output/**
 *.RDS
