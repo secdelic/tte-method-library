@@ -13,8 +13,28 @@ $logs = Join-Path $repo '.local\smoke'
 New-Item -ItemType Directory -Path $logs -Force | Out-Null
 function Invoke-SmokeStep([string]$Name, [string]$Executable, [string[]]$Arguments) {
     $log = Join-Path $logs ($Name + '.log')
-    & $Executable @Arguments *> $log
-    if ($LASTEXITCODE -ne 0) { throw "$Name failed; inspect private log $log" }
+    # Windows PowerShell 5 treats redirected native stderr as ErrorRecords.
+    # Capture both streams directly and judge the real process exit code;
+    # startup warnings remain in the log and are never reclassified as PASS.
+    $info = New-Object System.Diagnostics.ProcessStartInfo
+    $info.FileName = $Executable
+    $info.WorkingDirectory = $repo
+    # All arguments below are fixed, whitespace-free repository-relative tokens.
+    $info.Arguments = $Arguments -join ' '
+    $info.UseShellExecute = $false
+    $info.CreateNoWindow = $true
+    $info.RedirectStandardOutput = $true
+    $info.RedirectStandardError = $true
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $info
+    try {
+        if (-not $process.Start()) { throw "$Name could not start" }
+        $stdout = $process.StandardOutput.ReadToEndAsync()
+        $stderr = $process.StandardError.ReadToEndAsync()
+        $process.WaitForExit()
+        [IO.File]::WriteAllText($log, $stdout.GetAwaiter().GetResult() + [Environment]::NewLine + $stderr.GetAwaiter().GetResult())
+        if ($process.ExitCode -ne 0) { throw "$Name failed; inspect private log $log" }
+    } finally { $process.Dispose() }
     Write-Output "$Name=PASS"
 }
 $previousPath = $env:PATH
