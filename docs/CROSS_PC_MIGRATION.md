@@ -54,6 +54,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/smoke_test_windows.p
 也接受 `-Python`、`-Rscript` 显式指定本机可执行文件。先用 `-CheckOnly` 可只检查版本。
 它创建仓库私有 `.venv/`，按声明安装可选 Word 包，恢复并核对全部锁定 R 包，检查可写权限。
 它不全局安装 Python 包、不更改全局 PATH、不放宽统计合同、不上传任何报告。
+R 包显式安装到当前 checkout 的 renv 库；核验版本及所在位置。与锁定版本一致的
+R 自带 base/recommended 包可以由固定 R 安装提供，不接纳任意全局附加包替代项目依赖。
 R 的生成式激活脚本留在本机，原 `.Rprofile`、`.gitignore` 与 `renv.lock` 保持原字节。
 现有环境已经严格恢复时才使用 `-SkipRRestore`；即使跳过恢复仍要通过版本核对。
 

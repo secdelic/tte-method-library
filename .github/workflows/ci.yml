@@ -16,6 +16,8 @@ jobs:
         run: |
           sudo apt-get install -y cmake libcurl4-openssl-dev libglpk-dev libnode-dev libx11-dev pandoc
       - uses: r-lib/actions/setup-renv@v2
+      - name: Verify restored R versions and private library
+        run: Rscript scripts/check_environment.R
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
