@@ -195,7 +195,7 @@ class SyntheticExecutions(unittest.TestCase):
         # A project-local registry must never control the execution gate.
         (cls.binary / "runtime").mkdir()
         (cls.binary / "runtime/production_registry.csv").write_text("profile,production_allowed\nBASELINE_BINARY_RISK,FALSE\n")
-        cls.workspace.run("SYNTHETIC_BINARY", "BASELINE_BINARY_RISK", "SYNTHETIC_TEST", "run_001")
+        cls.run_fixture("SYNTHETIC_BINARY", "BASELINE_BINARY_RISK")
         cls.first = cls.binary / "runs/run_001"
         cls.first_hashes = {p.relative_to(cls.first).as_posix(): digest(p)
                             for p in cls.first.rglob("*") if p.is_file()}
@@ -206,7 +206,20 @@ class SyntheticExecutions(unittest.TestCase):
                    "--profile", "BASELINE_BINARY_RISK", "--execution-mode", "SYNTHETIC_TEST"]
         cls.second_result = json.loads(subprocess.run(command, cwd=cls.root.parent, check=True,
                                                      capture_output=True, text=True).stdout)
-        cls.workspace.run("SYNTHETIC_CONTINUOUS", "MI_PS_CONTINUOUS_ATE", "SYNTHETIC_TEST", "run_001")
+        cls.run_fixture("SYNTHETIC_CONTINUOUS", "MI_PS_CONTINUOUS_ATE")
+
+    @classmethod
+    def run_fixture(cls, project_id, profile):
+        try:
+            return cls.workspace.run(project_id, profile, "SYNTHETIC_TEST", "run_001")
+        except WorkspaceError:
+            # These inputs are exclusively the copied public synthetic fixture.
+            # Expose its failing R log in test output; the production CLI still
+            # never dumps a researcher's private runtime log to the console.
+            log = cls.root / "project" / project_id / "runs/run_001/internal/runtime.log"
+            if log.is_file():
+                print("PUBLIC_SYNTHETIC_FIXTURE_RUNTIME_LOG\n" + log.read_text(errors="replace"), file=sys.stderr)
+            raise
 
     def test_two_profiles_same_filenames_separate_inputs_outputs_and_config(self):
         for project in (self.binary, self.continuous):
