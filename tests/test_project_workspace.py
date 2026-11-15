@@ -28,7 +28,11 @@ def repository_copy(destination, full=False):
     for name in names:
         source, target = ROOT / name, destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
-        if source.is_dir():
+        if name == ".Rprofile":
+            # setup-renv appends a machine-local activation to the source
+            # checkout. The temporary public-code checkout has no such install.
+            target.write_bytes(subprocess.check_output(["git", "-C", str(ROOT), "show", "HEAD:.Rprofile"]))
+        elif source.is_dir():
             shutil.copytree(source, target, ignore=shutil.ignore_patterns("output", "__pycache__"))
         else:
             shutil.copyfile(source, target)
