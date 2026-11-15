@@ -123,6 +123,16 @@ output/
 
 ## Tables
 
+### Optional Word analysis reports
+
+The separate [Word reporting entry](docs/word_reporting.md) assembles saved
+aggregate results and investigator-written content into an editable DOCX with
+Methods, Results and Next Steps. It is disabled by default, does not run an
+estimator, and does not change registered profiles or the R runtime outputs.
+The [synthetic continuous-outcome example](examples/word_reporting/report_config.json)
+uses an existing result fixture; Python dependencies are optional. Report
+assembly does not confer scientific approval or manuscript readiness.
+
 The publication table layer supports unweighted and weighted Table 1 summaries with SMD, primary-effect tables, sensitivity tables, CSV export and optional HTML. Table 1 does not report group-comparison P values by default.
 
 ## Figures
