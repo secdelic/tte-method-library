@@ -48,6 +48,12 @@ renv::restore()
 
 Environment restoration may require network access to package repositories. The statistical examples themselves do not download data or contact a database.
 
+For this integrated review branch, see [Windows cross-PC migration](docs/CROSS_PC_MIGRATION.md).
+It includes the actual Word and project-workspace code in one checkout, a private
+Python environment setup and a synthetic smoke test. CCW development source is
+preserved separately from production loading; its missing sealed dependencies
+and unchanged approval status are documented explicitly.
+
 ## Chinese documentation
 
 Chinese-language user documentation for the fixed v1.0.0 release is available in the following files:
@@ -57,6 +63,27 @@ Chinese-language user documentation for the fixed v1.0.0 release is available in
 - [故障排查表](docs/TROUBLESHOOTING_ZH_CN.md)
 - [配置字段字典](docs/CONFIG_REFERENCE_ZH_CN.md)
 - [中文文档导航](docs/zh_CN/README.md)
+
+## New studies: project workspace
+
+**所有后续新项目统一使用`project/<project_id>/`，不再手动指定互相独立的任意输出根目录。**
+
+Initialize a researcher-chosen project ID (Python 3.11+), then supply the prepared
+private input and confirmed configuration in that project:
+
+```text
+python runtime/project_workspace.py init SEPSIS_AKI
+python runtime/project_workspace.py run SEPSIS_AKI --profile BASELINE_BINARY_RISK --execution-mode CANARY --run-id run_001
+```
+
+The profile shown is an example, not a study-design decision. Every execution
+uses the repository's production Registry and a fresh
+`project/SEPSIS_AKI/runs/<run_id>/output/`; existing runs are never overwritten.
+All project contents are ignored by Git. Word is optional and disabled by
+default. See [project workspaces](docs/project_workspace.md) for preparation,
+the runnable synthetic example, per-run snapshots/index and Word commands. This
+integration branch includes the original PR #7 code locally. Existing R calls and the following
+Quick Start remain compatibility interfaces with their original behavior.
 
 ## Quick Start
 
@@ -122,6 +149,16 @@ output/
 ```
 
 ## Tables
+
+### Optional Word analysis reports
+
+The separate [Word reporting entry](docs/word_reporting.md) assembles saved
+aggregate results and investigator-written content into an editable DOCX with
+Methods, Results and Next Steps. It is disabled by default, does not run an
+estimator, and does not change registered profiles or the R runtime outputs.
+The [synthetic continuous-outcome example](examples/word_reporting/report_config.json)
+uses an existing result fixture; Python dependencies are optional. Report
+assembly does not confer scientific approval or manuscript readiness.
 
 The publication table layer supports unweighted and weighted Table 1 summaries with SMD, primary-effect tables, sensitivity tables, CSV export and optional HTML. Table 1 does not report group-comparison P values by default.
 

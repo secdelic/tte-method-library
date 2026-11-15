@@ -25,8 +25,11 @@ identifier_patterns <- c(
   "\\blesson[ _-]?[0-9]+\\b", "\\bchapter[ _-]?[0-9]+\\b",
   "modified from course", "teacher code", "Codex", "ChatGPT"
 )
+# The exact documented review branch is a required software retrieval ref.
+# Other tool/template identifiers remain subject to the original scan.
+identifier_content <- gsub("codex/portable-workflow-sync-v1", "DOCUMENTED_GIT_REF", content, fixed = TRUE)
 identifier_hits <- unique(unlist(lapply(identifier_patterns, function(pattern) {
-  text_relative[content_scan & grepl(pattern, content, ignore.case = TRUE, perl = TRUE)]
+  text_relative[content_scan & grepl(pattern, identifier_content, ignore.case = TRUE, perl = TRUE)]
 })))
 
 absolute_patterns <- c(

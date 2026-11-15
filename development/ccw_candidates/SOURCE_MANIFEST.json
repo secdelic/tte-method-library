@@ -1,0 +1,342 @@
+{
+  "source_base_commit": "b595a938c88e535b0cb12e56dfc0558b309b8c61",
+  "scope": "Uncommitted development source and unresolved configuration template only; no execution evidence, approvals, patient rows or production activation",
+  "files": [
+    {
+      "source_path": "config_templates/analysis_spec_lean_candidate.yml",
+      "source_sha256": "0e723d90e543f0f2ad0adf5bdfc65c78789e90d9cbddeb1db82104597367d0a5",
+      "snapshot_path": "config_templates/analysis_spec_lean_candidate.yml",
+      "snapshot_sha256": "0e723d90e543f0f2ad0adf5bdfc65c78789e90d9cbddeb1db82104597367d0a5",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/core_candidate_optimized.R",
+      "source_sha256": "5aceeb72f6ffa4cca4ef77c837c9b95fa3e2adf7cc21892b4f7b25031591668f",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/core_candidate_optimized.R",
+      "snapshot_sha256": "5aceeb72f6ffa4cca4ef77c837c9b95fa3e2adf7cc21892b4f7b25031591668f",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/finalize_evidence.py",
+      "source_sha256": "043d9f70c1b75b01b9adb1c213b8c4412ac0e5a86ac80d6f3553ed325b7ecc9d",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/finalize_evidence.py",
+      "snapshot_sha256": "043d9f70c1b75b01b9adb1c213b8c4412ac0e5a86ac80d6f3553ed325b7ecc9d",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/produce_audit_full.R",
+      "source_sha256": "36a19842d2b671c9c4a16b1f0df2c4eba351d3d6a238c0b36c18b6a607fe963f",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/produce_audit_full.R",
+      "snapshot_sha256": "36a19842d2b671c9c4a16b1f0df2c4eba351d3d6a238c0b36c18b6a607fe963f",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/replay_paired.R",
+      "source_sha256": "28fc98233d2e7f5fe085695f685930bf05ec27936ee9401dba8e7136bf703cc7",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/replay_paired.R",
+      "snapshot_sha256": "28fc98233d2e7f5fe085695f685930bf05ec27936ee9401dba8e7136bf703cc7",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/replay_paired_round2.R",
+      "source_sha256": "ad88106f1bc40b368c15f38129c2c776b0d0dea4fc01c83c89b7d90f93f2179d",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/replay_paired_round2.R",
+      "snapshot_sha256": "ad88106f1bc40b368c15f38129c2c776b0d0dea4fc01c83c89b7d90f93f2179d",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/run_regression.R",
+      "source_sha256": "d30a0ace0a6944789e7ccb063eda80c501e37f3296e4575ea980688389d21ebf",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/run_regression.R",
+      "snapshot_sha256": "d30a0ace0a6944789e7ccb063eda80c501e37f3296e4575ea980688389d21ebf",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/run_stage.py",
+      "source_sha256": "384b847fcf2799b4712033be5e72c74a7a3415bde1bb015e1f30b857f3e20dc8",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/run_stage.py",
+      "snapshot_sha256": "384b847fcf2799b4712033be5e72c74a7a3415bde1bb015e1f30b857f3e20dc8",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/verify_optimization.py",
+      "source_sha256": "eacd1dd879af6cb23e6214bf395b02b35657af9f583a6a514308c56700335437",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/verify_optimization.py",
+      "snapshot_sha256": "eacd1dd879af6cb23e6214bf395b02b35657af9f583a6a514308c56700335437",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/write_result.R",
+      "source_sha256": "cb44752832b4368c0fa7475ff90242425b16d80cf5cb8e9a68eda471c837738e",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_core_optimization_v1/write_result.R",
+      "snapshot_sha256": "cb44752832b4368c0fa7475ff90242425b16d80cf5cb8e9a68eda471c837738e",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/core_candidate.R",
+      "source_sha256": "0fe254920ab413ab961bc205576526a0076c24df1b82f0f243552a4f0e74b731",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/core_candidate.R",
+      "snapshot_sha256": "0fe254920ab413ab961bc205576526a0076c24df1b82f0f243552a4f0e74b731",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/finish_verification.py",
+      "source_sha256": "d21eac401930d7e2cf04fdad59460c8a6df38eb5bd3aab2bb24b6e45c59cd31b",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/finish_verification.py",
+      "snapshot_sha256": "d21eac401930d7e2cf04fdad59460c8a6df38eb5bd3aab2bb24b6e45c59cd31b",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/glm_comparator.R",
+      "source_sha256": "5db0f1d1874fa1de12693fcad5e76643599e7f34547e113cdfa40d1af56e3cd2",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/glm_comparator.R",
+      "snapshot_sha256": "5db0f1d1874fa1de12693fcad5e76643599e7f34547e113cdfa40d1af56e3cd2",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/prepare_fixtures.py",
+      "source_sha256": "aea6eb9ecffdd730240d22597ab0711dbc6cdff08d9a2a5fa25b0fc7fbe1344d",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/prepare_fixtures.py",
+      "snapshot_sha256": "aea6eb9ecffdd730240d22597ab0711dbc6cdff08d9a2a5fa25b0fc7fbe1344d",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/replay_engineering.R",
+      "source_sha256": "665492c13be40cee1da87b4a1bebaeda3448b6a179a9e3c357441e11644f54e5",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/replay_engineering.R",
+      "snapshot_sha256": "665492c13be40cee1da87b4a1bebaeda3448b6a179a9e3c357441e11644f54e5",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/run_small.R",
+      "source_sha256": "2f5dee6b92b5f7c8477f1d54c707db54cb235c12521fae36c59b5935c95a447d",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/run_small.R",
+      "snapshot_sha256": "2f5dee6b92b5f7c8477f1d54c707db54cb235c12521fae36c59b5935c95a447d",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/run_stage.py",
+      "source_sha256": "6c6819f2a0c2e9ff70f0bf40171fa8313ff8e94b98aaee7e7e52af81a0a2d82c",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/run_stage.py",
+      "snapshot_sha256": "6c6819f2a0c2e9ff70f0bf40171fa8313ff8e94b98aaee7e7e52af81a0a2d82c",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/verify_small.py",
+      "source_sha256": "87a8d733af1dcc07c876c33b94e5486ec66ff40f71205e20349ed9cfc62527dd",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_minimal_core_v1/verify_small.py",
+      "snapshot_sha256": "87a8d733af1dcc07c876c33b94e5486ec66ff40f71205e20349ed9cfc62527dd",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/build_rng_bank.R",
+      "source_sha256": "9d318008a87e893b5e66bf22b36ec153ae499a9632bb43633c37841790561db9",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/build_rng_bank.R",
+      "snapshot_sha256": "9d318008a87e893b5e66bf22b36ec153ae499a9632bb43633c37841790561db9",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/dgp_observational.R",
+      "source_sha256": "28610c40de082a0cd380096f7b1c242c1e7ef2349996242acd621bd9a47b61b4",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/dgp_observational.R",
+      "snapshot_sha256": "28610c40de082a0cd380096f7b1c242c1e7ef2349996242acd621bd9a47b61b4",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/evidence_abort.py",
+      "source_sha256": "b73fdfd0181ca80dc74ecd0c2b338a4dd3bd36c265b586df6af8cd890c7b182a",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/evidence_abort.py",
+      "snapshot_sha256": "b73fdfd0181ca80dc74ecd0c2b338a4dd3bd36c265b586df6af8cd890c7b182a",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/generate_dev_sources.R",
+      "source_sha256": "657de308a06c890be56b5797385d0629afb86e6f35bf0926e43246c23dc080b1",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/generate_dev_sources.R",
+      "snapshot_sha256": "657de308a06c890be56b5797385d0629afb86e6f35bf0926e43246c23dc080b1",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/regression_gate.R",
+      "source_sha256": "82271ea971fc65b26bbc2a61c08bb34b65407a351ea23bb05b6d5dc808ca6501",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/regression_gate.R",
+      "snapshot_sha256": "82271ea971fc65b26bbc2a61c08bb34b65407a351ea23bb05b6d5dc808ca6501",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/rng_common.R",
+      "source_sha256": "de18f94cfb48c5f562155ae0ad85763e8b3f3feb7bf3ee39dec5dc4e2b8efa58",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/rng_common.R",
+      "snapshot_sha256": "de18f94cfb48c5f562155ae0ad85763e8b3f3feb7bf3ee39dec5dc4e2b8efa58",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/run_dev_analyses.R",
+      "source_sha256": "59ad2c1c72764216f1b4f8f92fb3cb83c600f87070a982863e8a5fc3d78d8b97",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/run_dev_analyses.R",
+      "snapshot_sha256": "59ad2c1c72764216f1b4f8f92fb3cb83c600f87070a982863e8a5fc3d78d8b97",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/run_stage.py",
+      "source_sha256": "04a478a0486477d1fb3fcad25c988b8611e93d8c02d5acecb783d365cbaaa9c0",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/run_stage.py",
+      "snapshot_sha256": "04a478a0486477d1fb3fcad25c988b8611e93d8c02d5acecb783d365cbaaa9c0",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/runner_contract_fault.py",
+      "source_sha256": "84f3a337e304e9d96d8072492a622c460b9c1e0fdd104b71aaaeea6ac25be67b",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/runner_contract_fault.py",
+      "snapshot_sha256": "84f3a337e304e9d96d8072492a622c460b9c1e0fdd104b71aaaeea6ac25be67b",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/staged_core.R",
+      "source_sha256": "92cabdb36fcc97b70b9af8d8f29c81a6345e3518f59c04299227dfb06e9a7208",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/staged_core.R",
+      "snapshot_sha256": "92cabdb36fcc97b70b9af8d8f29c81a6345e3518f59c04299227dfb06e9a7208",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_dgp.py",
+      "source_sha256": "4ca88b0a061fe78a3530c17b58bdb87ff9852db9d19614b4ea7906cb062dd996",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_dgp.py",
+      "snapshot_sha256": "4ca88b0a061fe78a3530c17b58bdb87ff9852db9d19614b4ea7906cb062dd996",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_gate.py",
+      "source_sha256": "28787bcfdca4bc208113e2f472ec4496c354aeefa938530220fb4fe23bac1a7d",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_gate.py",
+      "snapshot_sha256": "28787bcfdca4bc208113e2f472ec4496c354aeefa938530220fb4fe23bac1a7d",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_pilot.py",
+      "source_sha256": "6f6314286ff132c31401751da188c5d864d2de7368c81e78d99f83b71bb82a15",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_pilot.py",
+      "snapshot_sha256": "6f6314286ff132c31401751da188c5d864d2de7368c81e78d99f83b71bb82a15",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_rng_reproduction.R",
+      "source_sha256": "955ec124b77d3bd1b009f5739a0a9013eda4f98ec727f69136c7efeddd11c588",
+      "snapshot_path": "validation/implementation_candidates/gv_oracle_staged_runner_dev_v1/verify_rng_reproduction.R",
+      "snapshot_sha256": "955ec124b77d3bd1b009f5739a0a9013eda4f98ec727f69136c7efeddd11c588",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/bootstrap.R",
+      "source_sha256": "439b94f396e92434e93b16893fade9350302904ba4c865370d4433a3cae252a1",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/bootstrap.R",
+      "snapshot_sha256": "439b94f396e92434e93b16893fade9350302904ba4c865370d4433a3cae252a1",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/bounded_inference_run.py",
+      "source_sha256": "59755d6cec133e90222c0bfcea30e91f8d976cc1e20ca38015a2dba980cfd097",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/bounded_inference_run.py",
+      "snapshot_sha256": "6cb9a0daa6c8e7802875a98d22b7d534a8f0d480b25a5de46cf4109de6945d41",
+      "portability_path_adaptation": true
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/inference_component.R",
+      "source_sha256": "f5049dfc98c5c74f020dd35f208074529e52924f9136292f00370535fbd6c9c9",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/inference_component.R",
+      "snapshot_sha256": "f5049dfc98c5c74f020dd35f208074529e52924f9136292f00370535fbd6c9c9",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/run_canary.R",
+      "source_sha256": "2212e564a2c709e549fb8f91c8432ab98fb1326a276c3000e00b2f3c02db3fe0",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/run_canary.R",
+      "snapshot_sha256": "2212e564a2c709e549fb8f91c8432ab98fb1326a276c3000e00b2f3c02db3fe0",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/run_inference.R",
+      "source_sha256": "f68ba53d40dc451c6fcc037acf2aecacc4809a4b98179e98d763d04f9b731d3e",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/run_inference.R",
+      "snapshot_sha256": "f68ba53d40dc451c6fcc037acf2aecacc4809a4b98179e98d763d04f9b731d3e",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/test_bootstrap.R",
+      "source_sha256": "0a5641b6f76dada6960bcda5c27d3dc03d386fe0a5626a8a06d29416ce69f46c",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/test_bootstrap.R",
+      "snapshot_sha256": "0a5641b6f76dada6960bcda5c27d3dc03d386fe0a5626a8a06d29416ce69f46c",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/test_inference.R",
+      "source_sha256": "fbc2d76a3d478a6027141c4dbd649c77f10b8d8134a09c1223a7ca2ac4902404",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/test_inference.R",
+      "snapshot_sha256": "fbc2d76a3d478a6027141c4dbd649c77f10b8d8134a09c1223a7ca2ac4902404",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/verify_candidate.py",
+      "source_sha256": "6c3889ffc2b10708adde5b2e8ae9422322e3ea8f0c3ccce6b0661c5878cc78c9",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/verify_candidate.py",
+      "snapshot_sha256": "6c3889ffc2b10708adde5b2e8ae9422322e3ea8f0c3ccce6b0661c5878cc78c9",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/verify_inference.py",
+      "source_sha256": "b8a461c2c350ffc6994f0c591615da72303d7f0c7519040d6ab9e8d7076c9ae0",
+      "snapshot_path": "validation/implementation_candidates/lean_subject_bootstrap_v1/verify_inference.py",
+      "snapshot_sha256": "b8a461c2c350ffc6994f0c591615da72303d7f0c7519040d6ab9e8d7076c9ae0",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/reference_candidates/gv_oracle_reference_only_v1/expand_inputs.py",
+      "source_sha256": "ce7e892bac946c286a3e61e33883fc7c7b43d5a02d72037fc881d58fb47b8b35",
+      "snapshot_path": "validation/reference_candidates/gv_oracle_reference_only_v1/expand_inputs.py",
+      "snapshot_sha256": "1e437bc69238659d51b5615faf9bac4f8563ad01d3b52c157793e4f7183645fd",
+      "portability_path_adaptation": true
+    },
+    {
+      "source_path": "validation/reference_candidates/gv_oracle_reference_only_v1/measure_child.py",
+      "source_sha256": "d2843628ed63b49be661a4caf1a43372c6f758159d9c003c3fcdead12f04d89e",
+      "snapshot_path": "validation/reference_candidates/gv_oracle_reference_only_v1/measure_child.py",
+      "snapshot_sha256": "d2843628ed63b49be661a4caf1a43372c6f758159d9c003c3fcdead12f04d89e",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/reference_candidates/gv_oracle_reference_only_v1/ref_analytic.py",
+      "source_sha256": "35099bc4f600860f8031f45ed79aed6fe92382eb13e205c97d9f60ac5831e208",
+      "snapshot_path": "validation/reference_candidates/gv_oracle_reference_only_v1/ref_analytic.py",
+      "snapshot_sha256": "35099bc4f600860f8031f45ed79aed6fe92382eb13e205c97d9f60ac5831e208",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/reference_candidates/gv_oracle_reference_only_v1/ref_dp.py",
+      "source_sha256": "2d0be0dabaae1e4f5d2ad9a1bfdd1ad77e5251eaa6758f35738a117c82986774",
+      "snapshot_path": "validation/reference_candidates/gv_oracle_reference_only_v1/ref_dp.py",
+      "snapshot_sha256": "2d0be0dabaae1e4f5d2ad9a1bfdd1ad77e5251eaa6758f35738a117c82986774",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/reference_candidates/gv_oracle_reference_only_v1/ref_enum.py",
+      "source_sha256": "127b9a6601a0198007a1d250e0d55d1f360cc8cc88f65c546487413105eaefdd",
+      "snapshot_path": "validation/reference_candidates/gv_oracle_reference_only_v1/ref_enum.py",
+      "snapshot_sha256": "127b9a6601a0198007a1d250e0d55d1f360cc8cc88f65c546487413105eaefdd",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/reference_candidates/gv_oracle_reference_only_v1/run_reference.py",
+      "source_sha256": "bc3c52ff3e49d1ba16b4b3abf11d62eac37e1490be3d50ddc86896f7c7c0c14b",
+      "snapshot_path": "validation/reference_candidates/gv_oracle_reference_only_v1/run_reference.py",
+      "snapshot_sha256": "bc3c52ff3e49d1ba16b4b3abf11d62eac37e1490be3d50ddc86896f7c7c0c14b",
+      "portability_path_adaptation": false
+    },
+    {
+      "source_path": "validation/validate_ccw_phase0.R",
+      "source_sha256": "11a552577355174ec97d522d36e6c6a0e4c1e9996e9399baa2d060f985877001",
+      "snapshot_path": "validation/validate_ccw_phase0.R",
+      "snapshot_sha256": "11a552577355174ec97d522d36e6c6a0e4c1e9996e9399baa2d060f985877001",
+      "portability_path_adaptation": false
+    }
+  ]
+}
