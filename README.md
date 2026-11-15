@@ -58,6 +58,27 @@ Chinese-language user documentation for the fixed v1.0.0 release is available in
 - [配置字段字典](docs/CONFIG_REFERENCE_ZH_CN.md)
 - [中文文档导航](docs/zh_CN/README.md)
 
+## New studies: project workspace
+
+**所有后续新项目统一使用`project/<project_id>/`，不再手动指定互相独立的任意输出根目录。**
+
+Initialize a researcher-chosen project ID (Python 3.11+), then supply the prepared
+private input and confirmed configuration in that project:
+
+```text
+python runtime/project_workspace.py init SEPSIS_AKI
+python runtime/project_workspace.py run SEPSIS_AKI --profile BASELINE_BINARY_RISK --execution-mode CANARY --run-id run_001
+```
+
+The profile shown is an example, not a study-design decision. Every execution
+uses the repository's production Registry and a fresh
+`project/SEPSIS_AKI/runs/<run_id>/output/`; existing runs are never overwritten.
+All project contents are ignored by Git. Word is optional and disabled by
+default. See [project workspaces](docs/project_workspace.md) for preparation,
+the runnable synthetic example, per-run snapshots/index, Word commands and the
+explicit dependency on unmerged PR #7. Existing R calls and the following
+Quick Start remain compatibility interfaces with their original behavior.
+
 ## Quick Start
 
 From the repository root:
