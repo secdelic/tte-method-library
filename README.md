@@ -48,6 +48,12 @@ renv::restore()
 
 Environment restoration may require network access to package repositories. The statistical examples themselves do not download data or contact a database.
 
+For this integrated review branch, see [Windows cross-PC migration](docs/CROSS_PC_MIGRATION.md).
+It includes the actual Word and project-workspace code in one checkout, a private
+Python environment setup and a synthetic smoke test. CCW development source is
+preserved separately from production loading; its missing sealed dependencies
+and unchanged approval status are documented explicitly.
+
 ## Chinese documentation
 
 Chinese-language user documentation for the fixed v1.0.0 release is available in the following files:
@@ -75,8 +81,8 @@ uses the repository's production Registry and a fresh
 `project/SEPSIS_AKI/runs/<run_id>/output/`; existing runs are never overwritten.
 All project contents are ignored by Git. Word is optional and disabled by
 default. See [project workspaces](docs/project_workspace.md) for preparation,
-the runnable synthetic example, per-run snapshots/index, Word commands and the
-explicit dependency on unmerged PR #7. Existing R calls and the following
+the runnable synthetic example, per-run snapshots/index and Word commands. This
+integration branch includes the original PR #7 code locally. Existing R calls and the following
 Quick Start remain compatibility interfaces with their original behavior.
 
 ## Quick Start

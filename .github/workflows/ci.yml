@@ -19,24 +19,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      # Joint validation only: do not merge or modify the separate Word PR.
-      - name: Check out pinned optional Word dependency
-        uses: actions/checkout@v4
-        with:
-          repository: secdelic/tte-method-library
-          ref: 70b53b186ac8cf302ba2d07e10b5525f5cda1fe5
-          path: .reporting-dependency
-          persist-credentials: false
       - name: Install optional Word test dependencies
-        run: python -m pip install -r .reporting-dependency/reporting/requirements.txt
+        run: python -m pip install -r reporting/requirements.txt -c reporting/constraints.txt
       - name: Project isolation and joint Word contracts using synthetic inputs
         env:
           TTE_RUN_WORKSPACE_INTEGRATION: '1'
-          TTE_REPORTING_LIBRARY: ${{ github.workspace }}/.reporting-dependency
+          TTE_REPORTING_LIBRARY: ${{ github.workspace }}
         run: python -m unittest discover -s tests -p test_project_workspace.py -v
       - name: Original standalone Word contracts
-        working-directory: .reporting-dependency
         run: python -m unittest discover -s tests -p test_word_reporting.py -v
+      - name: Portable source snapshot integrity
+        run: python -m unittest discover -s tests -p test_portable_assets.py -v
       - name: Parse R sources
         run: Rscript -e 'files <- list.files(".", pattern="[.]R$", recursive=TRUE, full.names=TRUE); invisible(lapply(files, parse)); cat("R_PARSE=PASS\n")'
       - name: Tests

@@ -1,0 +1,2 @@
+# Preserve the recorded bytes of development source snapshots, including CRLF.
+development/ccw_candidates/** -text whitespace=cr-at-eol,-blank-at-eof

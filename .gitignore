@@ -1,5 +1,11 @@
 /input/private/**
 /project/
+/.venv/
+/.local/
+/.renv-bootstrap/
+/renv/activate.R
+/.Rprofile.bak
+/Rplots.pdf
 /.reporting-dependency/
 /output/**
 **/output/**
@@ -24,6 +30,7 @@ release_human_metadata.yml
 .Ruserdata
 __pycache__/
 *.pyc
+.pytest_cache/
 /figure_gallery/single/
 /figure_gallery/double/
 /figure_gallery/accessibility/*.png

@@ -1,0 +1,383 @@
+{
+  "schema_version": "1.0-lean-candidate",
+  "profile": "CCW_SINGLE_ABSORBING_TWO_STRATEGY_CANDIDATE",
+  "analysis_id": null,
+  "scientific_fields_frozen": false,
+  "candidate": {
+    "status": "PENDING_SINGLE_HUMAN_DECISION",
+    "amendment": "../docs/ccw/LEAN_TTE_EXECUTION_AMENDMENT_V1.md",
+    "role": "项目analysis_spec扩展候选；不是Scientific Authority，不是当前runtime可执行配置",
+    "runtime_integration": "NOT_IMPLEMENTED",
+    "execution_authorized": false,
+    "production_authorized": false,
+    "current_researcher_decision": "暂停大规模F计划作为真实研究默认前置；保留历史计划和证据",
+    "pending_adoption": [
+      "新应用B与CI交付",
+      "新应用直接留存及重建范围",
+      "有界开发验证及实施/运行范围"
+    ],
+    "historical_contracts_unchanged": [
+      "../governance/CCW_SCIENTIFIC_AUTHORITY_V1.yml",
+      "../governance/GV_ORACLE_BATCH_A_SCIENTIFIC_APPROVAL_RECORD_V1.yml",
+      "../governance/GV_ORACLE_BATCH_B_SCIENTIFIC_APPROVAL_RECORD_V1.yml",
+      "../governance/GV_ORACLE_BATCH_C_SCIENTIFIC_APPROVAL_RECORD_V1.yml",
+      "../governance/GV_ORACLE_BATCH_D_SCIENTIFIC_APPROVAL_RECORD_V1.yml",
+      "../governance/GV_ORACLE_BATCH_E_SCIENTIFIC_APPROVAL_RECORD_V1.yml"
+    ],
+    "old_gv_oracle_B_requested": 4999,
+    "old_contract_application": "原GV-ORACLE保持原身份；本候选不得覆盖其B、CI、留存或历史状态",
+    "overall_G01_G08": "NOT_EXECUTED / NOT_ASSESSED"
+  },
+  "supported_scope": {
+    "existing_implementation_evidence": "仅合成GV-ORACLE KNOWN/Q-SAT的确定性与DEV范围；不是临床验证",
+    "first_application_target": "单吸收结局、一次不可逆启动、完整analysis-ready数据、两策略、离散时间和明确grace、固定horizon risk/RD/RR",
+    "subject_unit": "一original subject一analysis unit；两clone不是独立subject",
+    "clinical_adapter": "REQUIRES_PROJECT_SPEC_AND_VALIDATION",
+    "clinical_probability_model": "REQUIRES_PROJECT_APPROVED_MODEL_AND_FULL_REFIT",
+    "unsupported_in_this_profile": [
+      "competing_event_CIF",
+      "RMST_RMTL",
+      "MI_plus_CCW",
+      "MIS",
+      "multiple_units_per_subject",
+      "repeated_treatment_adjustments",
+      "continuous_time_unresolved_ties",
+      "random_loss_to_followup_without_validated_model",
+      "complex_strategy_or_unapproved_censoring_model"
+    ],
+    "unsupported_request_action": "明确拒绝该配置；不得静默fallback或改变研究目标"
+  },
+  "design": {
+    "type": "ccw",
+    "analysis_population": null,
+    "protocol_reference": null,
+    "identification_assumptions": {
+      "consistency_and_interference": null,
+      "sequential_exchangeability_given_legal_history": null,
+      "policy_to_observation_support": null,
+      "sampling_and_inference_regularity": null
+    }
+  },
+  "population": {
+    "id": null,
+    "cluster_id": null,
+    "analysis_unit_id": null,
+    "eligibility_definition": null,
+    "eligibility_variables": null,
+    "eligibility_information_cutoff": null,
+    "resampling_frame": "项目批准的baseline eligible original subjects；不是clone/time行"
+  },
+  "time_zero": {
+    "variable": null,
+    "definition": null,
+    "eligibility_cloning_initiation_micro_order": null
+  },
+  "treatment": {
+    "variable": null,
+    "definition": null,
+    "actual_effective_start_variable": null,
+    "candidate_action_handling": null
+  },
+  "strategies": [
+    {
+      "id": "EARLY",
+      "definition": null,
+      "within_grace_intervention_distribution": null,
+      "postgrace_policy": null
+    },
+    {
+      "id": "DEFERRED",
+      "definition": null,
+      "within_grace_intervention_distribution": null,
+      "postgrace_policy": null
+    }
+  ],
+  "grace_period": {
+    "enabled": true,
+    "start": null,
+    "end": null,
+    "unit": null,
+    "inclusivity": null
+  },
+  "follow_up": {
+    "start": null,
+    "end": null,
+    "administrative_end": null,
+    "unit": null,
+    "decision_grid": null,
+    "measurement_and_availability_mapping": null,
+    "treatment_terminal_tie_rule": null,
+    "artificial_censoring_rule": null,
+    "natural_censoring_handling": null,
+    "time_mapping_requirement": "真实时间戳须按项目方案明确可映射到核心event-first离散合同；不自动按合成规则猜测先后"
+  },
+  "outcome": {
+    "variable": null,
+    "type": "single_absorbing_terminal",
+    "definition": null,
+    "terminal_codes": null
+  },
+  "estimand": {
+    "name": "项目批准总体的两策略边际风险、Primary RD及Secondary RR",
+    "target_population": null,
+    "horizon": null,
+    "primary_components": [
+      "R_E",
+      "R_D"
+    ],
+    "primary_contrast": "RD = R_E - R_D",
+    "secondary_contrast": "RR = R_E / R_D",
+    "reference": "DEFERRED",
+    "policy_law_definition": null,
+    "zero_reference_policy": "保留B14语义：总体正分子/零reference为理论+Inf，总体双零undefined；样本estimated reference=0不造有限RR；任何risk不可用则contrast不可用",
+    "oracle_time_defaults_prohibited": "不自动填tau=5、grace=3或临床time zero规则"
+  },
+  "baseline_confounders": null,
+  "time_varying_confounders": null,
+  "missing_data": {
+    "strategy": "none",
+    "scope": "首配置仅完整数据；结构性未启动、截至horizon无事件、terminal后无测量不当作随机缺失",
+    "unexpected_missing_action": "拒绝受影响输入并报告；不自动complete-case或MI",
+    "m": null,
+    "maxit": null,
+    "seed": null
+  },
+  "weighting": {
+    "method": "stopped_policy_to_observation_g_over_p",
+    "estimand": "与项目批准policy law一致",
+    "probability_model": {
+      "status": "PROJECT_SPEC_REQUIRED",
+      "fitting_population_and_risk_subset": null,
+      "response_orientation": null,
+      "formula_link_time_basis": null,
+      "variables_interactions_lags": null,
+      "availability_cutoff": null,
+      "required_fit_consumers_before_fitting": null,
+      "solver_and_convergence_contract": null,
+      "nuisance_uncertainty": "所有实际使用的估计概率每draw完整refit；不能将估计Q当已知",
+      "oracle_Q_SAT_as_clinical_default": false
+    },
+    "stabilization": "NONE_IN_FIRST_CANDIDATE",
+    "truncation_quantiles": [],
+    "normalization": "NONE_IN_FIRST_CANDIDATE",
+    "unsupported_or_invalid_action": "报告真实支持/拟合/数值状态；不自动截尾、加epsilon、penalty或换模型"
+  },
+  "risk_estimation": {
+    "primary": "time_varying_weighted_product_limit",
+    "event_riskset": "同区间entry risk-set与先前决策后weight，事件在右端结算",
+    "empty_riskset": "未吸收则不可估；此前合法hazard=1吸收后可按原合同延续",
+    "independent_developer_comparator": "direct_HT，独立实现；不是主PL fallback，不要求有限样本PL=HT或等于population truth",
+    "horizon_extrapolation_allowed": false
+  },
+  "variance": {
+    "method": "original_subject_full_refit_bootstrap",
+    "cluster_id": null,
+    "confidence_level": 0.95,
+    "interval_type": "pointwise_percentile",
+    "quantile_type": 1,
+    "scales": {
+      "R_E": "identity",
+      "R_D": "identity",
+      "RD": "identity",
+      "RR": "log_then_exp"
+    },
+    "covariance": "同draw的成对E/D及contrast；不完整共同集合只作明确标记的描述性结果",
+    "status": "新封装及聚合器尚未实施/校准",
+    "bootstrap": {
+      "decision_status": "PENDING_ADOPTION_FOR_NEW_APPLICATION",
+      "B_requested": 1000,
+      "canary_B": 20,
+      "canary_inference_output": false,
+      "high_precision_B_candidate": 2000,
+      "B_selection": "运行前按数值精度需求选定；不自动扩B，不依据P值/效果/跨零更改",
+      "algorithmic_retry": 0,
+      "replacement_of_failed_draws": false,
+      "subject_sampling_design": null,
+      "E_D_share_ordered_draw": true,
+      "refit": "逐draw实际消费者/required集合、原P机会计数、必要模型、weights、PL及paired contrasts",
+      "fixed_weight_bootstrap_allowed": false,
+      "rng": {
+        "kind": "L'Ecuyer-CMRG",
+        "normal_kind": "Inversion",
+        "sample_kind": "Rejection",
+        "project_seed": null,
+        "stream_allocation": null,
+        "avoid_existing_formal_and_DEV_namespaces": true,
+        "save_actual_initial_and_final_state": true,
+        "actual_R_and_package_versions_required": true
+      }
+    },
+    "failure_policy": {
+      "propagation": "按D24实际shared/local/contrast依赖；不设置全输出atomic门",
+      "point_and_CI_separate": true,
+      "original_unidentifiable": "受影响point/CI unavailable，保留独立合法component",
+      "technical_or_numerical_failure": "记录真实stage/error/warning/中断；不自动改模型或换draw",
+      "required_model_failure": "只影响实际消费者；不自动Firth、penalty、伪计数或事后缩required集合",
+      "legitimate_boundary": "合法risk/RD/RR点值保留；另判CI资格",
+      "zero_reference": "按B14；不以epsilon修复；不取消合法risk/RD",
+      "main_CI_delivery": "逐estimand原点合格、全部B个所需重复合格且聚合成功；不要求无关输出也合格",
+      "conservative_CI_domain": {
+        "R_E": "自身原点及所需重复risk严格(0,1)",
+        "R_D": "自身原点及所需重复risk严格(0,1)",
+        "RD": "同draw双risk严格(0,1)，RD=0不自行拒绝",
+        "RR": "同draw双risk严格(0,1)，RR=1不自行拒绝",
+        "interpretation": "仅首配置保守交付政策；log数学域为双risk>0，risk=1不妨碍log；无coverage保证"
+      },
+      "successful_subset_main_CI_allowed": false,
+      "automatic_success_fraction_threshold": null,
+      "CI_aggregation_failure": "仅该CI unavailable，不撤销合法point或无关CI",
+      "accounting": [
+        "requested = not_started + attempted",
+        "attempted = completed + partially_failed + failed + aborted",
+        "每estimand point可用 + 科学不可估 + 执行不可用 = attempted",
+        "每estimand CI_eligible + CI_unavailable = attempted"
+      ]
+    }
+  },
+  "sensitivity": {
+    "prespecified": true,
+    "analyses": [],
+    "note": "无自动敏感性执行；具体项目完整spec可事前列出。新grace需新policy/truth；不取消开发normal/stress/negative责任"
+  },
+  "diagnostics": {
+    "required": [
+      "time_and_history_QC",
+      "actual_consumer_model_status",
+      "policy_support",
+      "probability_and_weight_validity",
+      "stage_specific_risk_sets",
+      "weight_distribution_and_ESS",
+      "failure_and_warning_ledger"
+    ],
+    "stages": [
+      "ARRIVAL",
+      "AFTER_TERMINAL_SETTLEMENT",
+      "AFTER_ACTION_AC",
+      "ENTER_NEXT_INTERVAL"
+    ],
+    "counts_separate": [
+      "unique_original_subjects",
+      "analysis_units",
+      "active_strategy_clones",
+      "draw_instances",
+      "multiplicity",
+      "event_increments",
+      "AC_increments",
+      "weighted_mass",
+      "ESS"
+    ],
+    "ESS": "同strategy/time/stage/domain：S1=sum(m_i*w_i)，S2=sum(m_i*w_i^2)，ESS=S1^2/S2；有限正质量才定义",
+    "empty_zero_nonfinite": "空集/零质量为undefined；溢出/NaN/Inf为数值失败，不伪装结构positivity失败",
+    "structural_support_failure": "受影响目标硬科学限制；自然q=0/1不一律非法",
+    "numerical_diagnostic_thresholds": null,
+    "balance": "只用项目定义的目标law/reference及合法predecision变量；不以E/D幸存SMD=0证明可交换性",
+    "diagnostic_only_failure": "不反向取消不依赖它的合法component"
+  },
+  "retention": {
+    "adoption_status": "PENDING_CHANGE_FOR_NEW_APPLICATION_ONLY",
+    "source_spec_dictionary_environment": "直接保存一次准确版本和hash",
+    "per_attempt_direct": [
+      "task/input/spec/code/environment身份",
+      "实际RNG初末state/stream",
+      "完整有序draw映射",
+      "必要fit系数/计数/required消费者/诊断",
+      "PL区间分子分母及risk/contrasts",
+      "point/CI资格和真实failed stage/reason",
+      "实际错误/警告/中断及资源"
+    ],
+    "per_person_history_clone_weight_expansion": "不默认重复存；准确source/map/fit/code/environment一次重建核对后作为可重建视图",
+    "reconstruction_status": "新精简模式尚未实现验证；不能恢复的必要字段继续直接保存",
+    "runtime_errors_and_warnings_reconstructible": false,
+    "existing_evidence_deletion_allowed": false,
+    "checkpoint": "续未开始项；技术重现另记身份，不覆盖失败、不补抽"
+  },
+  "figures": {
+    "config_file": null,
+    "requested": [
+      "risk_curve_with_status",
+      "stage_matched_number_at_risk",
+      "approved_weight_and_ESS_diagnostics"
+    ],
+    "publication_readiness": "需适用证据及作者审阅，不由图形生成自动授予"
+  },
+  "outputs": {
+    "tables": [
+      "risk_RD_RR_with_point_CI_status",
+      "stage_risksets_and_units",
+      "model_weight_ESS_diagnostics",
+      "attempt_failure_denominators"
+    ],
+    "writing_workflow_input": "仅获准aggregate及方法/状态元数据",
+    "never_export": [
+      "subject_ids",
+      "individual_history",
+      "individual_weights",
+      "ordered_draw_maps",
+      "fit_debug_traces"
+    ],
+    "unavailable_to_zero_allowed": false,
+    "separate_statuses": [
+      "scientific_adoption",
+      "implementation",
+      "numerical_validation",
+      "inference_applicability",
+      "production_authorization"
+    ]
+  },
+  "developer_validation": {
+    "ordinary_project_runtime_prerequisite": false,
+    "status": "CANDIDATE_NOT_EXECUTED",
+    "reuse": "准确版本reference、封存expected、关键边界与DEV证据；只回归受影响部分",
+    "point_candidate": {
+      "laws": [
+        "BASE",
+        "NULL"
+      ],
+      "N": [
+        1000,
+        5000
+      ],
+      "M_per_cell": 500,
+      "methods": [
+        "KNOWN",
+        "Q_SAT"
+      ],
+      "paired_same_P_data": true,
+      "total_P_datasets": 2000,
+      "total_method_analyses": 4000
+    },
+    "self_implemented_CI_candidate": {
+      "laws": [
+        "BASE",
+        "NULL"
+      ],
+      "N": 5000,
+      "M_per_cell": 100,
+      "B": 1000,
+      "method": "Q_SAT",
+      "total_outer": 200,
+      "total_inner": 200000,
+      "role": "有限校准信号检查，非全面coverage认证，非每个临床项目默认前置"
+    },
+    "all_performance_with_MCSE_and_actual_denominators": true,
+    "new_performance_acceptance_thresholds": null,
+    "old_large_F_plan": "保留可选；历史PENDING/NOT_EXECUTED不覆盖",
+    "execution_authorized": false
+  },
+  "governance": {
+    "created_by": "AI-assisted proposal under researcher scope-reset request",
+    "approved_by": null,
+    "approval_date": null,
+    "specification_hash": null,
+    "approval_status": "PENDING_SINGLE_HUMAN_DECISION",
+    "result_dependent_changes_allowed": false,
+    "once_full_spec_and_scope_approved": "条件不变按已授权范围执行；解释文件/换行/运行目录不重复人审",
+    "human_decision_for": [
+      "科学含义或正式结论变化",
+      "外部发布",
+      "不可逆操作"
+    ],
+    "current_permission": "只读核验和本修订/配置编制；不实施、不运行统计、不提交Git"
+  }
+}
+

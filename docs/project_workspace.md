@@ -95,19 +95,17 @@ Word stays disabled for statistical runs and for a `report` call without
 does not call R, refit a model or produce new estimates. Only the DOCX is the
 user report; snapshots and validation state remain in `internal/`.
 
-The optional Word module is still supplied by the separate, unmerged
-[Draft PR #7](https://github.com/secdelic/tte-method-library/pull/7).
-This feature branch is based on `main` and does not include or merge that PR.
-To reproduce the joint integration locally, create its pinned checkout:
+This integration branch includes the unchanged optional Word module from
+[Draft PR #7](https://github.com/secdelic/tte-method-library/pull/7), alongside
+the project entry from PR #8. The original PRs remain separate and unmerged.
+No additional checkout or `--reporting-library` argument is needed here:
 
 ```text
-git worktree add --detach ../tte-word-reporting 70b53b186ac8cf302ba2d07e10b5525f5cda1fe5
-python -m pip install -r ../tte-word-reporting/reporting/requirements.txt
+python -m pip install -r reporting/requirements.txt -c reporting/constraints.txt
 ```
 
-For a fresh clone where that commit is not yet available, first run
-`git fetch origin refs/pull/7/head` and then use the pinned SHA above. Fetching
-or creating this detached worktree does not merge PR #7.
+The Windows setup script can install these optional dependencies into `.venv/`.
+See [cross-PC migration](CROSS_PC_MIGRATION.md) for a full clean-checkout example.
 
 Edit this project's `config/report_config.json`, replacing every placeholder
 with confirmed prose. Declare `AGGREGATE_ONLY_CONFIRMED`, or
@@ -121,7 +119,7 @@ rejected by the existing adapter. Classification and identifier guards are not
 proof of de-identification; review the actual content.
 
 ```text
-python runtime/project_workspace.py report SEPSIS_AKI --run-id run_001 --enable --reporting-library ../tte-word-reporting
+python runtime/project_workspace.py report SEPSIS_AKI --run-id run_001 --enable
 ```
 
 The report is `project/SEPSIS_AKI/runs/run_001/report/analysis_report.docx`.
@@ -136,7 +134,7 @@ To correct reviewed content, preserve the previous Word and request a new
 version in the same run:
 
 ```text
-python runtime/project_workspace.py report SEPSIS_AKI --run-id run_001 --enable --report-version analysis_report_v2 --reporting-library ../tte-word-reporting
+python runtime/project_workspace.py report SEPSIS_AKI --run-id run_001 --enable --report-version analysis_report_v2
 ```
 
 Repeating identical report inputs reuses the unchanged file. Changed inputs,
@@ -147,8 +145,8 @@ reference must live under this project's `config/` and retains the standalone
 adapter's hash and `wording_reviewed` requirements. External/cross-project
 assets, even from another run, are deliberately unsupported by this entry.
 Use the unchanged standalone adapter for a separately authorized independent
-aggregate source. If the optional adapter is later present in this checkout,
-`--reporting-library` can be omitted; until then it is required for enabled Word.
+aggregate source. `--reporting-library` remains available for a deliberately
+selected alternate code checkout; normal migration uses this checkout's module.
 
 ## Runnable synthetic demonstration and tests
 
@@ -163,12 +161,12 @@ projects instead of replacing files. Word remains off by default:
 python examples/project_workspace/run_synthetic_projects.py
 ```
 
-In a fresh checkout with the optional dependency prepared, run the combined
+In a fresh checkout with the optional dependencies installed, run the combined
 example, which embeds a saved binary diagnostic figure and leaves the
 continuous report without a figure:
 
 ```text
-python examples/project_workspace/run_synthetic_projects.py --enable-word --reporting-library ../tte-word-reporting
+python examples/project_workspace/run_synthetic_projects.py --enable-word
 ```
 
 Both examples and all generated inputs/results/reports stay under `project/`
@@ -182,8 +180,8 @@ python -m unittest discover -s tests -p test_project_workspace.py -v
 ```
 
 For real R integration tests, set `TTE_RUN_WORKSPACE_INTEGRATION=1`; for Word
-joint tests also set `TTE_REPORTING_LIBRARY` to the absolute pinned checkout.
-CI sets both, checks the original standalone Word tests and retains the R
+joint tests also set `TTE_REPORTING_LIBRARY` to this checkout's absolute root.
+CI sets both, uses the in-checkout Word module and retains the R
 suite, Quick Start, frozen numerical regression and privacy scan. Tests use
 temporary Git repositories and existing synthetic fixtures only.
 
