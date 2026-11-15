@@ -58,6 +58,9 @@ R 包显式安装到当前 checkout 的 renv 库；核验版本及所在位置�
 R 自带 base/recommended 包可以由固定 R 安装提供，不接纳任意全局附加包替代项目依赖。
 R 的生成式激活脚本留在本机，原 `.Rprofile`、`.gitignore` 与 `renv.lock` 保持原字节。
 现有环境已经严格恢复时才使用 `-SkipRRestore`；即使跳过恢复仍要通过版本核对。
+旧锁文件还保留了一些当前入口不消费的包；`renv::status()` 可能将它们列为已安装、
+已记录但 unused。不要为消除该提示自行 snapshot、删包或修改冻结锁文件；使用准备脚本的
+版本/位置核验及实际回归测试判断本次安装是否满足运行合同。
 
 `.local/environment.json` 记录本机解释器位置，供 smoke 脚本使用；它与 `.venv/`、
 `.renv-bootstrap/`、renv 缓存和 `/project/` 都被忽略。不要在电脑之间复制这些环境目录，

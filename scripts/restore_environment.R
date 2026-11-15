@@ -6,6 +6,7 @@ main <- function() {
   }
   repository <- normalizePath(args[[1]], winslash = "/", mustWork = TRUE)
   setwd(repository)
+  options(timeout = max(300L, getOption("timeout", 60L)))
   bootstrap <- file.path(repository, ".renv-bootstrap")
   dir.create(bootstrap, showWarnings = FALSE)
   .libPaths(c(bootstrap, .libPaths()))
@@ -16,7 +17,7 @@ main <- function() {
     available <- FALSE
   }
   if (!available) {
-    url <- sprintf("https://cran.r-project.org/src/contrib/Archive/renv/renv_%s.tar.gz", version)
+    url <- sprintf("https://cloud.r-project.org/src/contrib/Archive/renv/renv_%s.tar.gz", version)
     utils::install.packages(url, repos = NULL, type = "source", lib = bootstrap)
   }
   if (!requireNamespace("renv", quietly = TRUE) ||
