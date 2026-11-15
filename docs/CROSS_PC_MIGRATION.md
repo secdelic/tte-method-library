@@ -56,6 +56,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/smoke_test_windows.p
 它不全局安装 Python 包、不更改全局 PATH、不放宽统计合同、不上传任何报告。
 R 包显式安装到当前 checkout 的 renv 库；核验版本及所在位置。与锁定版本一致的
 R 自带 base/recommended 包可以由固定 R 安装提供，不接纳任意全局附加包替代项目依赖。
+若依赖解析器自动修复到较新 CRAN 版本，脚本会按原锁定版本定向恢复，禁止连带更新依赖；
+任何剩余版本/位置不一致都会报错，不通过修改锁文件接受安装器的选择。
 R 的生成式激活脚本留在本机，原 `.Rprofile`、`.gitignore` 与 `renv.lock` 保持原字节。
 现有环境已经严格恢复时才使用 `-SkipRRestore`；即使跳过恢复仍要通过版本核对。
 旧锁文件还保留了一些当前入口不消费的包；`renv::status()` 可能将它们列为已安装、

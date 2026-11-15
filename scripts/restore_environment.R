@@ -42,5 +42,27 @@ main <- function() {
   .libPaths(c(library, .libPaths()))
   renv::restore(project = repository, library = library,
                 lockfile = file.path(repository, "renv.lock"), prompt = FALSE, strict = TRUE)
+  # Dependency-graph repair can select a newer CRAN release even when the old
+  # lock declares a version. Restore the declared versions without updating any
+  # other dependency, then let the separate checker reject missing/conflicting
+  # packages. Never rewrite the frozen lockfile to accept an installer choice.
+  lock <- jsonlite::read_json(file.path(repository, "renv.lock"))
+  exact <- character()
+  for (name in names(lock$Packages)) {
+    record <- lock$Packages[[name]]
+    path <- find.package(name, lib.loc = library, quiet = TRUE)
+    if (!length(path)) next
+    actual <- read.dcf(file.path(path, "DESCRIPTION"))[1, "Version"]
+    if (package_version(actual) != package_version(record$Version)) {
+      if (!identical(record$Source, "Repository") || !identical(record$Repository, "CRAN")) {
+        stop("A non-CRAN package differs from its locked source: ", name)
+      }
+      exact <- c(exact, paste0(name, "@", record$Version))
+    }
+  }
+  if (length(exact)) {
+    message("RESTORE_DECLARED_VERSIONS=", paste(exact, collapse = ","))
+    renv::install(exact, library = library, dependencies = FALSE, prompt = FALSE)
+  }
 }
 main()
