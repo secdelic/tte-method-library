@@ -1,0 +1,24 @@
+{
+  "report_enabled": false,
+  "report_format": "docx",
+  "report_template": "methods_results_next_steps",
+  "data_classification": "UNCONFIRMED",
+  "title": "Analysis report",
+  "language": "en",
+  "study": {
+    "design": "<Researcher-confirmed design>",
+    "population": "<Researcher-confirmed population>"
+  },
+  "methods": [],
+  "results": [
+    {
+      "type": "effects",
+      "path": "output/tables/primary_effects.csv",
+      "caption": "Table 1. Saved primary effects",
+      "interval_label": "<Researcher-confirmed interval label>"
+    }
+  ],
+  "next_steps": [
+    {"type": "paragraph", "text": "<Researcher-supplied next steps>"}
+  ]
+}
